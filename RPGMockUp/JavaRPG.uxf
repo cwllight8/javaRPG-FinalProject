@@ -107,7 +107,7 @@
 //at lest 2 items, at most 5
 +generateLoot(pLevel : int) : ArrayList&lt;Item&gt;
 -generateAmountOfLoot() : int
--generateTypeOfLoot : void
+-generateTypeOfLoot(pLevel : int) : void
 -genterateItemLevel(pLevel : int) : int 
 
 
