@@ -1,9 +1,7 @@
 package edu.neumont.light.javarpg.models;
 
-/**
- * @author cole
- *
- */
+import java.util.Random;
+
 /**
  * @author cole
  *
@@ -37,8 +35,8 @@ public class Weapon extends Item implements Comparable<Weapon> {
 	public Weapon(String itemID, String type, int level) {
 		super(itemID, type);
 		this.level = level;
-		this.generatePrice();
 		this.generateDamage();
+		this.generatePrice();
 
 	}
 
@@ -98,7 +96,10 @@ public class Weapon extends Item implements Comparable<Weapon> {
 	 * damage variable
 	 */
 	private void generateDamage() {
-		// TODO need to determine how damage will scale compared to level
+		//add 3 per level
+		Random rng = new Random();
+		int lowerBound = this.level * 3;
+		this.damage = rng.nextInt(4) + lowerBound;
 	}
 
 	/**
@@ -106,7 +107,8 @@ public class Weapon extends Item implements Comparable<Weapon> {
 	 * price variable
 	 */
 	private void generatePrice() {
-		// TODO need to determine how price will change with level
+		//based on damage
+		this.setPrice(this.damage*3 + this.level);
 	}
 
 	/**
