@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>1568</y>
+      <w>272</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>Item
+-
+
+-Item() &lt;&lt;ctor&gt;&gt;
+-Item(itemId : String, type : String) &lt;&lt;ctor&gt;&gt;
+-Item(itemId : String, price : int, type : String) &lt;&lt;ctor&gt;&gt;
+-itemID : String
+-price : int
+-type : Stirng
+-
++getters and setters
++toString : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>248</x>
+      <y>1760</y>
+      <w>376</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>Weapon implements Item implements compareable
+-
+-itemID : String
+-price : int
+-type : Stirng
+-damage : int
+-level : int
+
+-
++Weapon() 
++Weapon(level : int)
++Weapon(itemID : String, price : int, type : String, damage : int, level : int)
+//to generate the stats randomly based on level
+-generateDamage() : void
+-generateType() : void
+-generatePrice() : void
+//
+
++toStirng() : String
++compareTo() : int
++equals() : boolean
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>1760</y>
+      <w>272</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>HPpotion implements Item
+-
+-HpRegen : int(40)
+-itemID : String
+-price : int
+-type : Stirng
+
+-
++HPpotion()
++HPpotion(itemID : String, price : int, type : Stirng)
+//will set type to empty bottle, hpregen to 0,
+//and price to a lower price
++usePotion() : int
+
++toStirng() : String
++compareTo() : int
++equals() : boolean
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>1248</y>
+      <w>272</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Chest
+-
+-rand : int
+-loot : Arraylist&lt;ItemInterface&gt;
+
+
+-
++Chest(pLevel : int) 
+//at lest 2 items, at most 5
+-generateAmountOfLoot() : int
+-generateTypeOfLoot : void
+-genterateItemLevel(pLevel : int) : int 
+
+
++toStirng() : String
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>616</x>
+      <y>1176</y>
+      <w>272</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>Player
+-
+-level : int
+-EXP : int
+-skillPoints : int
+-HP : int
+-inventory : ArrayList&lt;ItemInterface&gt;
+-skills : ArrayList&lt;SkillInterface&gt;
+-equipedWepon : weapon
+//if we add armor latter it will need its own field
+
+-
++addItems(items : ArrayList&lt;ItemInterface&gt;) : void
++removeItem(index : int) : void
++levelUP() : void
++expGain(exp : int) : void
++takeDamage(hp : int) : void
++getWeponDamge() : int
++getSkillDamage(index : int) : int
++purchasedSkill(cost : int) : void
++checkLevelUp() : boolean
+
++toStirng() : String
++compareTo() : int
++equals() : boolean
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1144</x>
+      <y>1128</y>
+      <w>272</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>monster
+-
+-level : int
+-HP : int
+-type : MonsterType &lt;&lt;enum&gt;&gt;
+-loot : ArrayList&lt;ItemInterface&gt;
+-skills : ArrayList&lt;SkillInterface&gt;
+-basicAttack : int
+-rand : int
+
+-
++takeDamage(hp : int) : void
++getBasicAttack() : int
++getSkillDamage(index : int) : int
++generateLoot() : void
+//0-2
+-generateAmountOfLoot() : int
+-generateTypeOfLoot() : void
+-generateItemLevel() : int
+//retrun the exp the player gainded from the monster
++expGain() : int
+
++toStirng() : String
++compareTo() : int
++equals() : boolean
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>2240</y>
+      <w>144</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>TileType &lt;&lt;enum&gt;&gt;
+-
+Water
+Rock
+Grass
+Tree
+Building1
+Building2
+Building3
+Building4
+Player
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>384</y>
+      <w>232</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>ViewCOntroller
+-
+-controller : Controller
+-
++init() : void
++registerController(c : Controller) : void
++KeyEventHandeler(KeyEvent): void
+-up(): void //w
+-down(): void //s
+-left(): void //a
+-right() : void //d
+-interact() : void //e
+-menu() : void//tab
+-map() : void //m
+-skills() : void //k
+-inventory() : void //i
+-comabtMenu() : void
+-inventoryMenu() : void
+-mapMenu() : void
+-skillMenu() : void
+-quit() : void
+-save() : void
+-saveAndQuit() : void
+-returnToTitleScreen() : void
+-canMove(t : TileType) : boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1384</x>
+      <y>544</y>
+      <w>272</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>Controller
+-
+-player : Player
+-monsters : ArrayList&lt;Monster&gt;
+-viewController : ViewController
+-skillMasteList : ArrayList&lt;List&gt;
+
+-
+
+getters*
++playerAttack() : void
++monsterAttack() : void
++monterDamage(damage : int) : void
++playerDamage(damage : int, index : int ) : void 
++dropItem() : void
++lootChest() : void
++endBattle(items : ArrayList&lt;item&gt;, xp : int) : void
++addSkillPoint() : void
++levelUp() : void
++obtainSkill(index : int) : void
+-addItem() : void
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>1664</y>
+      <w>272</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>Skill
+-
+
+-description : String
+-unlocked : boolean
+-name : String
+
+-
++Skill() &lt;&lt;ctor&gt;&gt;
++Skill(d : String, u : boolean, n : String) &lt;&lt;ctor&gt;&gt;
++Skill(d : String, n : String) &lt;&lt;ctor&gt;&gt; //defaults to false
+getter and setter*
++toString() : String
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>2000</y>
+      <w>352</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>DamageSkill extends Skill
+-
+
+-damage() : int
+
+-
+
++DamageSkill() &lt;&lt;ctor&gt;&gt;
++DamageSkill(dm : int, d : String, u : boolean, n : String) &lt;&lt;ctor&gt;&gt;
++DamageSkill(dm : int, d : String, n : String) &lt;&lt;ctor&gt;&gt; //defaults to false
+getter and setter*
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1120</x>
+      <y>2232</y>
+      <w>176</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Effect &lt;&lt;enum&gt;&gt;
+-
+DamageMultipier
+DamageResistance
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1232</x>
+      <y>2000</y>
+      <w>392</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>PassiveeSkill extends Skill
+-
+
+-effects : Effect &lt;&lt;enum&gt;&gt;
+-potentcy : double
+
+-
+
++PassiveSkill() &lt;&lt;ctor&gt;&gt;
++PassiveSkill(e : Effect, p : int, d : String, u : boolean, n : String) &lt;&lt;ctor&gt;&gt;
++PassiveSkill(e : Effect, p : int, d : String, n : String) &lt;&lt;ctor&gt;&gt; //defaults to false
+getter and setter*
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1240</x>
+      <y>1504</y>
+      <w>176</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>MonsterType &lt;&lt;enum&gt;&gt;
+-
+SlipperySlime
+BadBird
+StabbingSkull
+
+
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>2096</y>
+      <w>232</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Map
+-
+//TODO figure out how the tiles work 
+-tiles : ArrayList&lt;Arraylist&lt;TileType&gt;&gt;//100x100
+
+//with transparetn background
+-playerIcon : TileType &lt;&lt;enum&gt;&gt;
+-
+
++getters and setters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1144</x>
+      <y>1920</y>
+      <w>24</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1272</x>
+      <y>1920</y>
+      <w>24</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1408</x>
+      <y>1288</y>
+      <w>64</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;310.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>2144</y>
+      <w>56</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;200.0;50.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>312</x>
+      <y>312</y>
+      <w>544</w>
+      <h>472</h>
+    </coordinates>
+    <panel_attributes>View
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1216</x>
+      <y>448</y>
+      <w>568</w>
+      <h>432</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1208</x>
+      <y>2096</y>
+      <w>40</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>1376</y>
+      <w>128</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;140.0;10.0;140.0;270.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>1344</y>
+      <w>80</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;300.0;80.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>568</x>
+      <y>1712</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>176</x>
+      <y>1072</y>
+      <w>1464</w>
+      <h>1344</h>
+    </coordinates>
+    <panel_attributes>Models
+--
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>1712</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>696</y>
+      <w>520</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>630.0;10.0;210.0;10.0;210.0;680.0;10.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1112</x>
+      <y>728</y>
+      <w>288</w>
+      <h>488</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>340.0;10.0;10.0;10.0;10.0;590.0;40.0;590.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1344</x>
+      <y>736</y>
+      <w>368</w>
+      <h>992</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>390.0;10.0;440.0;10.0;440.0;1220.0;10.0;1220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>616</y>
+      <w>456</w>
+      <h>1520</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>550.0;10.0;10.0;10.0;10.0;1880.0;520.0;1880.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>648</y>
+      <w>904</w>
+      <h>656</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>1110.0;10.0;610.0;10.0;610.0;410.0;80.0;410.0;80.0;800.0;10.0;800.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>984</x>
+      <y>0</y>
+      <w>400</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Driver
+
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1040</x>
+      <y>48</y>
+      <w>288</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>RPG extends Application
+-
+_+main(args : String[]) : void_
++start(primaryStage : Stage) : void
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1320</x>
+      <y>104</y>
+      <w>80</w>
+      <h>472</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;570.0;80.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>88</y>
+      <w>392</w>
+      <h>472</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>470.0;10.0;30.0;10.0;30.0;570.0;10.0;570.0</additional_attributes>
+  </element>
+</diagram>
