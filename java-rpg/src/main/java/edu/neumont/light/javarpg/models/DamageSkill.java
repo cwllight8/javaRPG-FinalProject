@@ -14,7 +14,7 @@ public class DamageSkill extends Skill {
 	public DamageSkill() {
 		super();
 	}
-
+//this=kj dakfj akjfa;sjfsa;lkj;dsalj
 	//test
 	
 	/**
