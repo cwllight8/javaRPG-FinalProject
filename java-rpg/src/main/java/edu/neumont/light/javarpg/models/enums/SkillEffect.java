@@ -4,4 +4,3 @@ public enum SkillEffect {
 
 	DamageMultiplyer, DamageResistance
 }
-//test

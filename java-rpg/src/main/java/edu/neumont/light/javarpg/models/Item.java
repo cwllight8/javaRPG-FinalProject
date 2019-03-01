@@ -1,6 +1,5 @@
 package edu.neumont.light.javarpg.models;
 
-//test
 
 /**
  * @author cole
