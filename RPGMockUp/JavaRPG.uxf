@@ -132,7 +132,7 @@
 -HP : int
 -inventory : ArrayList&lt;Item&gt;
 -skills : ArrayList&lt;Skill&gt;
--equipedWepon : weapon
+-equipedWeapon : Weapon
 //if we add armor latter it will need its own field
 
 -
