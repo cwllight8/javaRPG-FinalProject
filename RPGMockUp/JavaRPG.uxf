@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>5</zoom_level>
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
-      <y>780</y>
-      <w>170</w>
-      <h>95</h>
+      <x>770</x>
+      <y>1716</y>
+      <w>374</w>
+      <h>209</h>
     </coordinates>
     <panel_attributes>Item
 -
@@ -27,10 +27,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>155</x>
-      <y>900</y>
-      <w>235</w>
-      <h>165</h>
+      <x>341</x>
+      <y>1980</y>
+      <w>517</w>
+      <h>363</h>
     </coordinates>
     <panel_attributes>Weapon implements Item implements compareable
 -
@@ -61,10 +61,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>405</x>
-      <y>900</y>
-      <w>170</w>
-      <h>155</h>
+      <x>891</x>
+      <y>1980</y>
+      <w>374</w>
+      <h>341</h>
     </coordinates>
     <panel_attributes>HPpotion implements Item
 -
@@ -91,10 +91,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>145</x>
-      <y>580</y>
-      <w>170</w>
-      <h>110</h>
+      <x>319</x>
+      <y>1276</y>
+      <w>374</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>Chest
 -
@@ -119,10 +119,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>385</x>
-      <y>535</y>
-      <w>170</w>
-      <h>205</h>
+      <x>847</x>
+      <y>1177</y>
+      <w>374</w>
+      <h>451</h>
     </coordinates>
     <panel_attributes>Player
 -
@@ -130,8 +130,8 @@
 -EXP : int
 -skillPoints : int
 -HP : int
--inventory : ArrayList&lt;ItemInterface&gt;
--skills : ArrayList&lt;SkillInterface&gt;
+-inventory : ArrayList&lt;Item&gt;
+-skills : ArrayList&lt;Skill&gt;
 -equipedWepon : weapon
 //if we add armor latter it will need its own field
 
@@ -157,18 +157,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>715</x>
-      <y>505</y>
-      <w>170</w>
-      <h>205</h>
+      <x>1573</x>
+      <y>1111</y>
+      <w>374</w>
+      <h>451</h>
     </coordinates>
     <panel_attributes>monster
 -
 -level : int
 -HP : int
 -type : MonsterType &lt;&lt;enum&gt;&gt;
--loot : ArrayList&lt;ItemInterface&gt;
--skills : ArrayList&lt;SkillInterface&gt;
+-loot : ArrayList&lt;Item&gt;
+-skills : ArrayList&lt;Skill&gt;
 -basicAttack : int
 -rand : int
 
@@ -195,10 +195,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>1200</y>
-      <w>90</w>
-      <h>95</h>
+      <x>572</x>
+      <y>2640</y>
+      <w>198</w>
+      <h>209</h>
     </coordinates>
     <panel_attributes>TileType &lt;&lt;enum&gt;&gt;
 -
@@ -217,10 +217,10 @@ Player
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>255</x>
-      <y>140</y>
-      <w>145</w>
-      <h>225</h>
+      <x>561</x>
+      <y>308</y>
+      <w>319</w>
+      <h>495</h>
     </coordinates>
     <panel_attributes>ViewCOntroller
 -
@@ -253,10 +253,10 @@ Player
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>845</x>
-      <y>240</y>
-      <w>170</w>
-      <h>165</h>
+      <x>1859</x>
+      <y>528</y>
+      <w>374</w>
+      <h>363</h>
     </coordinates>
     <panel_attributes>Controller
 -
@@ -292,10 +292,10 @@ getters*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>675</x>
-      <y>840</y>
-      <w>170</w>
-      <h>165</h>
+      <x>1485</x>
+      <y>1848</y>
+      <w>374</w>
+      <h>363</h>
     </coordinates>
     <panel_attributes>Skill
 -
@@ -321,10 +321,10 @@ getter and setter*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>525</x>
-      <y>1050</y>
-      <w>220</w>
-      <h>110</h>
+      <x>1155</x>
+      <y>2310</y>
+      <w>484</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>DamageSkill extends Skill
 -
@@ -349,10 +349,10 @@ getter and setter*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>1195</y>
-      <w>110</w>
-      <h>55</h>
+      <x>1540</x>
+      <y>2629</y>
+      <w>242</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>Effect &lt;&lt;enum&gt;&gt;
 -
@@ -376,10 +376,10 @@ DamageResistance
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>770</x>
-      <y>1050</y>
-      <w>245</w>
-      <h>110</h>
+      <x>1694</x>
+      <y>2310</y>
+      <w>539</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>PassiveeSkill extends Skill
 -
@@ -405,10 +405,10 @@ getter and setter*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>775</x>
-      <y>740</y>
-      <w>110</w>
-      <h>55</h>
+      <x>1705</x>
+      <y>1628</y>
+      <w>242</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>MonsterType &lt;&lt;enum&gt;&gt;
 -
@@ -433,10 +433,10 @@ StabbingSkull
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>1110</y>
-      <w>145</w>
-      <h>65</h>
+      <x>572</x>
+      <y>2442</y>
+      <w>319</w>
+      <h>143</h>
     </coordinates>
     <panel_attributes>Map
 -
@@ -454,10 +454,10 @@ StabbingSkull
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>715</x>
-      <y>1000</y>
-      <w>15</w>
-      <h>60</h>
+      <x>1573</x>
+      <y>2200</y>
+      <w>33</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -465,10 +465,10 @@ StabbingSkull
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>795</x>
-      <y>1000</y>
-      <w>15</w>
-      <h>60</h>
+      <x>1749</x>
+      <y>2200</y>
+      <w>33</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -476,10 +476,10 @@ StabbingSkull
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
-      <y>605</y>
-      <w>40</w>
-      <h>165</h>
+      <x>1936</x>
+      <y>1331</y>
+      <w>88</w>
+      <h>363</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0;60.0;310.0;10.0;310.0</additional_attributes>
@@ -487,10 +487,10 @@ StabbingSkull
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>235</x>
-      <y>1140</y>
-      <w>35</w>
-      <h>110</h>
+      <x>517</x>
+      <y>2508</y>
+      <w>77</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;10.0;10.0;200.0;50.0;200.0</additional_attributes>
@@ -498,10 +498,10 @@ StabbingSkull
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>175</x>
-      <y>95</y>
-      <w>340</w>
-      <h>295</h>
+      <x>385</x>
+      <y>209</y>
+      <w>748</w>
+      <h>649</h>
     </coordinates>
     <panel_attributes>View
 --
@@ -511,10 +511,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>740</x>
-      <y>180</y>
-      <w>355</w>
-      <h>270</h>
+      <x>1628</x>
+      <y>396</y>
+      <w>781</w>
+      <h>594</h>
     </coordinates>
     <panel_attributes>Controller
 --
@@ -524,10 +524,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>755</x>
-      <y>1110</y>
-      <w>25</w>
-      <h>95</h>
+      <x>1661</x>
+      <y>2442</y>
+      <w>55</w>
+      <h>209</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>30.0;10.0;10.0;10.0;10.0;170.0</additional_attributes>
@@ -535,10 +535,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>515</x>
-      <y>660</y>
-      <w>80</w>
-      <h>145</h>
+      <x>1133</x>
+      <y>1452</y>
+      <w>176</w>
+      <h>319</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>80.0;10.0;140.0;10.0;140.0;270.0;10.0;270.0</additional_attributes>
@@ -546,10 +546,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>640</y>
-      <w>50</w>
-      <h>160</h>
+      <x>682</x>
+      <y>1408</y>
+      <w>110</w>
+      <h>352</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;10.0;40.0;300.0;80.0;300.0</additional_attributes>
@@ -557,10 +557,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>355</x>
-      <y>870</y>
-      <w>15</w>
-      <h>40</h>
+      <x>781</x>
+      <y>1914</y>
+      <w>33</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -568,10 +568,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>110</x>
-      <y>475</y>
-      <w>915</w>
-      <h>840</h>
+      <x>242</x>
+      <y>1045</y>
+      <w>2013</w>
+      <h>1848</h>
     </coordinates>
     <panel_attributes>Models
 --
@@ -581,10 +581,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>415</x>
-      <y>870</y>
-      <w>15</w>
-      <h>40</h>
+      <x>913</x>
+      <y>1914</y>
+      <w>33</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -592,10 +592,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>550</x>
-      <y>335</y>
-      <w>305</w>
-      <h>250</h>
+      <x>1210</x>
+      <y>737</y>
+      <w>671</w>
+      <h>550</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>590.0;10.0;210.0;10.0;210.0;480.0;10.0;480.0</additional_attributes>
@@ -603,10 +603,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>695</x>
-      <y>355</y>
-      <w>160</w>
-      <h>205</h>
+      <x>1529</x>
+      <y>781</y>
+      <w>352</w>
+      <h>451</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>300.0;10.0;10.0;10.0;10.0;390.0;40.0;390.0</additional_attributes>
@@ -614,10 +614,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>360</y>
-      <w>230</w>
-      <h>520</h>
+      <x>1848</x>
+      <y>792</y>
+      <w>506</w>
+      <h>1144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>350.0;10.0;440.0;10.0;440.0;1020.0;10.0;1020.0</additional_attributes>
@@ -626,9 +626,9 @@ bg=yellow</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>0</x>
-      <y>285</y>
-      <w>270</w>
-      <h>850</h>
+      <y>627</y>
+      <w>594</w>
+      <h>1870</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>510.0;10.0;10.0;10.0;10.0;1680.0;520.0;1680.0</additional_attributes>
@@ -636,10 +636,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>305</y>
-      <w>545</w>
-      <h>310</h>
+      <x>682</x>
+      <y>671</y>
+      <w>1199</w>
+      <h>682</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>1070.0;10.0;610.0;10.0;610.0;210.0;80.0;210.0;80.0;600.0;10.0;600.0</additional_attributes>
@@ -647,10 +647,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>595</x>
+      <x>1309</x>
       <y>0</y>
-      <w>250</w>
-      <h>110</h>
+      <w>550</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>Driver
 
@@ -661,10 +661,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>30</y>
-      <w>180</w>
-      <h>65</h>
+      <x>1386</x>
+      <y>66</y>
+      <w>396</w>
+      <h>143</h>
     </coordinates>
     <panel_attributes>RPG extends Application
 -
@@ -678,10 +678,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>805</x>
-      <y>65</y>
-      <w>50</w>
-      <h>195</h>
+      <x>1771</x>
+      <y>143</y>
+      <w>110</w>
+      <h>429</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0;50.0;370.0;80.0;370.0</additional_attributes>
@@ -689,10 +689,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>395</x>
-      <y>55</y>
-      <w>245</w>
-      <h>195</h>
+      <x>869</x>
+      <y>121</y>
+      <w>539</w>
+      <h>429</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>470.0;10.0;30.0;10.0;30.0;370.0;10.0;370.0</additional_attributes>
