@@ -15,6 +15,8 @@ public class DamageSkill extends Skill {
 		super();
 	}
 
+	//test
+	
 	/**
 	 * @param description
 	 *            a description of the skill
