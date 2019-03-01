@@ -94,7 +94,7 @@
       <x>100</x>
       <y>1160</y>
       <w>340</w>
-      <h>220</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Chest
 -
@@ -103,8 +103,9 @@
 
 
 -
-+Chest(pLevel : int) 
++Chest()
 //at lest 2 items, at most 5
++generateLoot(pLevel : int) : ArrayList&lt;Item&gt;
 -generateAmountOfLoot() : int
 -generateTypeOfLoot : void
 -genterateItemLevel(pLevel : int) : int 
@@ -128,7 +129,8 @@
 -
 -name : String
 -level : int
--EXP : int
+-XP : int
+-XPToNextLevel : int
 -skillPoints : int
 -HP : int
 -inventory : ArrayList&lt;Item&gt;
