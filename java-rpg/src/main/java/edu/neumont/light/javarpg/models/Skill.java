@@ -11,6 +11,8 @@ public class Skill {
 	private boolean unlocked;
 
 	private String name;
+	
+	private int cost;
 
 	/**
 	 * default constructor with no initializations
@@ -25,11 +27,13 @@ public class Skill {
 	 *            the name of the skill
 	 * 
 	 *            will set unlocked to false
+	 * @param cost how many skill points the skill costs
 	 */
-	public Skill(String description, String name) {
+	public Skill(String description, String name, int cost) {
 		this.description = description;
 		this.name = name;
 		this.unlocked = false;
+		this.cost = cost;
 	}
 
 	/**
@@ -40,11 +44,13 @@ public class Skill {
 	 *            unlocked or not
 	 * @param name
 	 *            the name of the skill
+	 *             @param cost how many skill points the skill costs
 	 */
-	public Skill(String description, boolean unlocked, String name) {
+	public Skill(String description, boolean unlocked, String name, int cost) {
 		this.description = description;
 		this.unlocked = unlocked;
 		this.name = name;
+		this.cost = cost;
 	}
 
 	/**
@@ -93,26 +99,45 @@ public class Skill {
 	}
 
 	/**
+	 * @return the number of skillpoints this skill costs to unlock
+	 */
+	public int getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost set the number of skillpoints this skill costs to unlock
+	 */
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	/**
 	 * @return will return false if the skill has already been unlocked and true if
 	 *         it has not. in the case that the skill is not already unlocked it
 	 *         will also set it to be unlocked.
 	 */
-	public boolean unlockStill() {
+	public boolean unlockStill(int pSP) {
 		if (this.isUnlocked()) {
 			return false;
 		}
-		this.unlocked = true;
-		return true;
+		if(pSP >= this.cost) {
+			
+			this.unlocked = true;
+			return true;
+		}
+		return false;
 	}
 
 	/**
 	 * @return a string formated as:
 	 * 			name:
+	 * 			cost: (cost) SP
 	 * 			description
 	 */
 	@Override
 	public String toString() {
-		return name + ":\n" + description;
+		return name + ":\ncost: " + this.cost + " SP\n" + description;
 	}
 
 }

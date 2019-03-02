@@ -33,8 +33,8 @@ public class PassiveSkill extends Skill {
 	 *            how strong the effect is as a number(how many times is the damage
 	 *            multiplied or damage decreased)
 	 */
-	public PassiveSkill(String description, boolean unlocked, String name, SkillEffect effect, double potency) {
-		super(description, unlocked, name);
+	public PassiveSkill(String description, boolean unlocked, String name, SkillEffect effect, double potency, int cost) {
+		super(description, unlocked, name, cost);
 		this.effect = effect;
 		this.potency = potency;
 	}
@@ -53,8 +53,8 @@ public class PassiveSkill extends Skill {
 	 * 
 	 *            unlocked is set to false by default
 	 */
-	public PassiveSkill(String description, String name, SkillEffect effect, double potency) {
-		super(description, name);
+	public PassiveSkill(String description, String name, SkillEffect effect, double potency, int cost) {
+		super(description, name, cost);
 		this.effect = effect;
 		this.potency = potency;
 	}

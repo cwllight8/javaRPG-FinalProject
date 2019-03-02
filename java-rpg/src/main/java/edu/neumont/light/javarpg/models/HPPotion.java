@@ -81,7 +81,7 @@ public class HPPotion extends Item implements Comparable<HPPotion>{
 	 * @return true if they are equal and false if they are not
 	 */
 	public boolean equals(HPPotion h) {
-		return this.compareTo(h) == 0 ? true : false;
+		return this.compareTo(h) == 0;
 	}
 	
 	/**

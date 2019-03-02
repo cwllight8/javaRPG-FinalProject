@@ -25,8 +25,8 @@ public class DamageSkill extends Skill {
 	 * @param damage
 	 *            how much damage the skill does
 	 */
-	public DamageSkill(String description, boolean unlocked, String name, int damage) {
-		super(description, unlocked, name);
+	public DamageSkill(String description, boolean unlocked, String name, int damage, int cost) {
+		super(description, unlocked, name, cost);
 		this.damage = damage;
 	}
 
@@ -40,8 +40,8 @@ public class DamageSkill extends Skill {
 	 * 
 	 *            sets unlocked to false by default
 	 */
-	public DamageSkill(String description, String name, int damage) {
-		super(description, name);
+	public DamageSkill(String description, String name, int damage, int cost) {
+		super(description, name, cost);
 		this.damage = damage;
 	}
 
