@@ -145,7 +145,7 @@ public class Weapon extends Item implements Comparable<Weapon> {
 	 * @return true if the weapons have equal damage
 	 */
 	public boolean equals(Weapon w) {
-		return this.compareTo(w) == 0 ? true : false;
+		return this.compareTo(w) == 0;
 	}
 
 }

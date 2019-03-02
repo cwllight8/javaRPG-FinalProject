@@ -44,6 +44,19 @@ public class Monster {
 	
 	private void generateType() {
 		
+		int chance = rand.nextInt(99) + 1;
+		
+		if(chance <= 33) {
+			this.type = MonsterType.BadBird;
+			this.generateBirdSkills();
+		}else if(chance <= 66) {
+			this.type = MonsterType.SillySlime;
+			this.generateBirdSkills();
+		}else {
+			this.type = MonsterType.StabbingSkull;
+			this.generateBirdSkills();
+		}
+		
 	}
 	
 	

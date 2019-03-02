@@ -164,9 +164,9 @@ Player(name : String, level : int, EXP : int, sp : int, HP : int, inventory : Ar
     <id>UMLClass</id>
     <coordinates>
       <x>1782</x>
-      <y>1078</y>
+      <y>990</y>
       <w>374</w>
-      <h>550</h>
+      <h>583</h>
     </coordinates>
     <panel_attributes>monster
 -
@@ -184,7 +184,9 @@ Player(name : String, level : int, EXP : int, sp : int, HP : int, inventory : Ar
 +Monster(pLevel : int, type : MonsterType) &lt;&lt;const&gt;&gt;
 -initMonster() : void
 -generateType() : void
--gererateSkills() : void 
+-gererateSkullSkills() : void 
+-gererateBirdSkills() : void 
+-gererateSlimeSkills() : void 
 -generateLevel(pLevel) : int
 +takeDamage(hp : int) : void
 +getBasicAttack() : int
@@ -490,12 +492,12 @@ StabbingSkull
     <id>Relation</id>
     <coordinates>
       <x>2145</x>
-      <y>1298</y>
+      <y>1210</y>
       <w>88</w>
-      <h>396</h>
+      <h>484</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0;60.0;340.0;10.0;340.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;420.0;10.0;420.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -619,10 +621,10 @@ bg=yellow</panel_attributes>
       <x>1738</x>
       <y>781</y>
       <w>352</w>
-      <h>418</h>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>300.0;10.0;10.0;10.0;10.0;360.0;40.0;360.0</additional_attributes>
+    <additional_attributes>300.0;10.0;10.0;10.0;10.0;280.0;40.0;280.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
