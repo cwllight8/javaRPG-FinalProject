@@ -16,7 +16,6 @@ public class Player {
 	private int xp;
 	
 	private int xpToNextLevel;
-	
 
 	private int skillPoints;
 	
@@ -34,12 +33,12 @@ public class Player {
 	 */
 	public Player() {
 		
-		name = "Player1";
-		level = 1;
-		xp = 0;
-		xpToNextLevel = 0;
-		skillPoints = 0;
-		hp = 100;
+		this.name = "Player1";
+		this.level = 1;
+		this.xp= 0;
+		this.xpToNextLevel = 100;
+		this.skillPoints = 0;
+		this.hp = 100;
 			
 	}
 	
@@ -49,6 +48,11 @@ public class Player {
 	 */
 	public Player(String name) {
 		this.name = name;
+		this.level = 1;
+		this.xp= 0;
+		this.xpToNextLevel = 100;
+		this.skillPoints = 0;
+		this.hp = 100;
 	}
 
 	
@@ -76,7 +80,7 @@ public class Player {
 			ArrayList<Skill> skills, Weapon equippedWeapon) {
 		this.name = name;
 		this.level = level;
-		this.xp = xp;
+		this.xp= xp;
 		this.xpToNextLevel = xpToNextLevel;
 		this.skillPoints = skillPoints;
 		this.hp = hp;
@@ -86,17 +90,17 @@ public class Player {
 	}
 
 	/**
-	 * @return how much xp is required for next level
+	 * @return how much xpis required for next level
 	 */
-	public int getXpToNextLevel() {
+	public int getExpToNextLevel() {
 		return xpToNextLevel;
 	}
 	
 	/**
 	 * @param xpToNextLevel
-	 * 		sets how much xp is required to next level
+	 * 		sets how much xpis required to next level
 	 */
-	public void setXpToNextLevel(int xpToNextLevel) {
+	public void setExpToNextLevel(int xpToNextLevel) {
 		this.xpToNextLevel = xpToNextLevel;
 	}
 
@@ -131,18 +135,18 @@ public class Player {
 	}
 
 	/**
-	 * @return the xp for the player
+	 * @return the xpfor the player
 	 */
-	public int getXp() {
+	public int getExp() {
 		return xp;
 	}
 
 	/**
 	 * @param xp
-	 * 		sets the xp for the player
+	 * 		sets the xpfor the player
 	 */
-	public void setXp(int xp) {
-		this.xp = xp;
+	public void setExp(int xp) {
+		this.xp= xp;
 	}
 
 	public int getSkillPoints() {
@@ -185,8 +189,53 @@ public class Player {
 		this.equippedWeapon = equippedWeapon;
 	}
 	
+	public void addItems(List<Item> items) {
+		
+	}
 	
+	public void removeItem(int index) {
+		
+	}
 	
+	public void levelUp() {
+		this.xp -= this.xpToNextLevel;
+		this.level++;
+		this.skillPoints++;
+		this.xpToNextLevel *= 1.3;
+		
+	}
 	
+	public void xpGain(int xp) {
+		this.xp += xp;
+	}
+	
+	public void takeDamage(int hp) {
+		this.hp -= hp;
+	}
+	
+	public int getWeaponDamage() {
+		return this.equippedWeapon.getDamage();
+	}
+	
+	public List<DamageSkill> getDamageSkill(int index) {
+		
+		List<DamageSkill> skdmg = new ArrayList<>();
+		
+		for(int i = 0; i < this.skills.size(); i++) {
+			if(this.skills.get(i) instanceof  DamageSkill) {
+				skdmg.add((DamageSkill) this.skills.get(i));
+			}
+		}
+		return skdmg;
+		
+	}
+	
+	public void purchasedSkill(int cost) {
+		
+	}
+	
+	public boolean checkLevelUp() {
+		return this.xp >= this.xpToNextLevel; 
+	}
 	
 }
