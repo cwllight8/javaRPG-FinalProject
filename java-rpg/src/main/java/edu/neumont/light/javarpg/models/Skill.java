@@ -116,6 +116,8 @@ public class Skill {
 	 * @return will return false if the skill has already been unlocked and true if
 	 *         it has not. in the case that the skill is not already unlocked it
 	 *         will also set it to be unlocked.
+	 *         
+	 * @param pSP the players total skill points 
 	 */
 	public boolean unlockStill(int pSP) {
 		if (this.isUnlocked()) {
