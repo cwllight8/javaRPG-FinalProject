@@ -23,7 +23,7 @@ public class JavaRPG extends Application {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		RpgView viewController = loader.getController();
-//		viewController.setStage(stage);
+		viewController.setStage(stage);
 		
 	}
 

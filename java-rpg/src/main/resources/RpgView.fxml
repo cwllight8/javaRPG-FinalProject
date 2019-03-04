@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="edu.neumont.light.javarpg.view.RpgView">
+	
+	<center>
+		<tilePane id="mapTilePane">
+		
+		</tilePane>
+	</center>
+	<!-- TODO Add Nodes -->
+</BorderPane>
+
