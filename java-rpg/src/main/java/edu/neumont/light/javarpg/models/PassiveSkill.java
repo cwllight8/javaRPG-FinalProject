@@ -32,6 +32,7 @@ public class PassiveSkill extends Skill {
 	 * @param potency
 	 *            how strong the effect is as a number(how many times is the damage
 	 *            multiplied or damage decreased)
+	 * @param cost how many skill points the skill costs
 	 */
 	public PassiveSkill(String description, boolean unlocked, String name, SkillEffect effect, double potency, int cost) {
 		super(description, unlocked, name, cost);
@@ -50,6 +51,7 @@ public class PassiveSkill extends Skill {
 	 * @param potency
 	 *            how strong the effect is as a number(how many times is the damage
 	 *            multiplied or damage decreased)
+	 * @param cost how many skill points the skill costs
 	 * 
 	 *            unlocked is set to false by default
 	 */
