@@ -13,13 +13,12 @@ import javafx.stage.Stage;
 public class JavaRPG extends Application {
 
 	public static void main(String[] args) {
-		Application.launch(JavaRPG.class, args);
+		Application.launch(JavaRPG.class,args);
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		
-		URL location = this.getClass().getClassLoader().getResource("RpgView.fxml");
+		URL location = this.getClass().getClassLoader().getResource("RpgMainView.fxml");
 		FXMLLoader loader = new FXMLLoader(location);
 		Parent root = loader.load();
 		Scene scene = new Scene(root);

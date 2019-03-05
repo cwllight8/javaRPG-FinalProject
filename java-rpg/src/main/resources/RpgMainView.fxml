@@ -8,7 +8,7 @@
 	fx:controller="edu.neumont.light.javarpg.view.RpgView">
 	<center>
 		<GridPane id="pane">
-			<Label id="tileLabel"
+			<Label id="tileLabel"></Label>
 		</GridPane>
 	</center>
 </BorderPane>
