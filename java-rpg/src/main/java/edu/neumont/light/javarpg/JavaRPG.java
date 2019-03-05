@@ -2,6 +2,7 @@ package edu.neumont.light.javarpg;
 
 import java.net.URL;
 
+import edu.neumont.light.javarpg.controller.RpgController;
 import edu.neumont.light.javarpg.view.RpgView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +18,17 @@ public class JavaRPG extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		
 		URL location = this.getClass().getClassLoader().getResource("RpgView.fxml");
 		FXMLLoader loader = new FXMLLoader(location);
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		RpgView viewController = loader.getController();
-//		viewController.setStage(stage);
+		viewController.setStage(stage);
+		
+		RpgController controller = new RpgController(viewController);
+		controller.run();
 		
 	}
 
