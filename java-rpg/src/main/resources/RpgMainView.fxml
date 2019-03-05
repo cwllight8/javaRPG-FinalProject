@@ -3,11 +3,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.canvas.Canvas?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="edu.neumont.light.javarpg.view.RpgView">
 	<center>
-		<Canvas fx:id="drawingCanvas" width="800" height="600" ></Canvas>
+		<Canvas fx:id="drawingCanvas" height="1030" width="1900" />
 	</center>
 </BorderPane>
-
+  
