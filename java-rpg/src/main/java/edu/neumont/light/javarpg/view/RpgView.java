@@ -26,6 +26,10 @@ public class RpgView {
 
 	@FXML
 	private Label tileLabel;
+	
+	private double playerx;
+	
+	private double playery;
 
 	private List<List<TileType>> board = new ArrayList<List<TileType>>();
 
@@ -35,35 +39,12 @@ public class RpgView {
 	}
 	
 	public void init() {
-//		drawTiles();
 		this.stage.setTitle("Tale Of Legend");
 		this.stage.show();
 		GraphicsContext g = drawingCanvas.getGraphicsContext2D();
+		
+		g.strokeRect(this.drawingCanvas.getWidth()/2, this.drawingCanvas.getHeight()/2, 20, 20);
 	}
-
-//	private void drawTiles() {
-//		
-//
-//		//TODO the next line is just a test
-//		for(int i = 0; i < 10; i++) {
-//			List<TileType> temp = new ArrayList<>();
-//			for(int j = 0; j < 10; j++) {
-//				temp.add(TileType.Grass);
-//			}
-//			this.board.add(temp);
-//		}
-//		//TODO end of test
-//		
-//		for(int i = 0; i < this.board.size(); i++) {
-//			for(int j = 0; j < this.board.get(i).size(); i++) {
-//				 Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("GrassTile.png"));
-////				 Label label = new Label();
-////				 label.setGraphic(new ImageView(image));
-//				 this.pane.getChildren().add(new ImageView(image));
-//			}
-//		}
-//		
-//	}
 
 	public void registerController(RpgController rpgController) {
 		this.controller = rpgController;
