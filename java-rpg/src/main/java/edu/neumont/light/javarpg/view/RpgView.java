@@ -38,7 +38,18 @@ public class RpgView {
 	}
 
 	private void drawTiles() {
+		
 
+		//TODO the next line is just a test
+		for(int i = 0; i < 10; i++) {
+			List<TileType> temp = new ArrayList<>();
+			for(int j = 0; j < 10; i++) {
+				temp.add(TileType.Grass);
+			}
+			this.board.add(temp);
+		}
+		//TODO end of test
+		
 		for(int i = 0; i < this.board.size(); i++) {
 			for(int j = 0; j < this.board.get(i).size(); i++) {
 				 Image image = new Image(getClass().getResourceAsStream("grassTile.png"));
