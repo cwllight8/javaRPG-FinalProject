@@ -6,7 +6,7 @@
 	fx:controller="edu.neumont.light.javarpg.view.RpgView">
 	
 	<center>
-		<tilePane id="mapTilePanel">
+		<tilePane id="mapTilePane">
 		
 		</tilePane>
 	</center>
