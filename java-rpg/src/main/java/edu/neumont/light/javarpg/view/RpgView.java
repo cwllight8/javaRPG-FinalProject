@@ -6,8 +6,9 @@ import java.util.List;
 import edu.neumont.light.javarpg.models.enums.TileType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 public class RpgView {
@@ -31,7 +32,8 @@ public class RpgView {
 
 		for(int i = 0; i < this.board.size(); i++) {
 			for(int j = 0; j < this.board.get(i).size(); i++) {
-				this.pane.add(this.tileLabel.setGraphic(Image()), arg1, arg2);
+				 Image image = new Image(getClass().getResourceAsStream("grassTile.png"));
+				this.pane.add(this.tileLabel.setGraphic(new ImageView(image)),i,j);
 			}
 		}
 		
