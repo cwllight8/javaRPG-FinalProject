@@ -25,6 +25,7 @@ public class JavaRPG extends Application {
 		stage.setScene(scene);
 		RpgView viewController = loader.getController();
 		viewController.setStage(stage);
+		viewController.registerScene(scene);
 		
 		RpgController controller = new RpgController(viewController);
 		controller.run();
