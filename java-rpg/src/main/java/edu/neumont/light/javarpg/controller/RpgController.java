@@ -14,6 +14,7 @@ public class RpgController {
 	public void run() {
 		view.init();
 		
+		
 	}
 	
 }
