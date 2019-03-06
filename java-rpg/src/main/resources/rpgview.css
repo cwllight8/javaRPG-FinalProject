@@ -1,3 +1,3 @@
-Label.grass{
-	-fx-graphic: url(grassTile.png)
+canvas.basemap{
+	-fx-graphic: url(BaseMap.png)
 }

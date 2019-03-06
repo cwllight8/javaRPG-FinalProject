@@ -8,8 +8,8 @@ import edu.neumont.light.javarpg.models.enums.TileType;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class RpgView {
@@ -19,13 +19,10 @@ public class RpgView {
 	private Stage stage;
 	
 	@FXML
-	private Canvas drawingCanvas;
-
+	private Canvas Canvas;
+	
 	@FXML
-	private GridPane pane;
-
-	@FXML
-	private Label tileLabel;
+	private BorderPane pane;
 	
 	private double playerx;
 	
@@ -40,10 +37,11 @@ public class RpgView {
 	
 	public void init() {
 		this.stage.setTitle("Tale Of Legend");
+		this.pane.setBackground(Background.EMPTY);
+		this.pane.setStyle("-fx-graphic: url(BaseMap.png)");
 		this.stage.show();
-		GraphicsContext g = drawingCanvas.getGraphicsContext2D();
-		
-		g.strokeRect(this.drawingCanvas.getWidth()/2, this.drawingCanvas.getHeight()/2, 20, 20);
+		GraphicsContext g = Canvas.getGraphicsContext2D();
+		g.strokeRect(this.Canvas.getWidth()/2, this.Canvas.getHeight()/2, 20, 20);
 	}
 
 	public void registerController(RpgController rpgController) {

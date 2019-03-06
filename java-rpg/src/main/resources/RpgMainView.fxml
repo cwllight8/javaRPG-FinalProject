@@ -6,9 +6,11 @@
 <?import javafx.scene.canvas.Canvas?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="edu.neumont.light.javarpg.view.RpgView">
+	fx:controller="edu.neumont.light.javarpg.view.RpgView"
+	stylesheets="rpgview.css"
+	fx:id="pane">
 	<center>
-		<Canvas fx:id="drawingCanvas" height="1030" width="1900" />
+		<Canvas fx:id="Canvas" height="1030" width="1900" />
 	</center>
 </BorderPane>
   
