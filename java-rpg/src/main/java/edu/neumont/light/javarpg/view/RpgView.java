@@ -6,10 +6,10 @@ import java.util.List;
 import edu.neumont.light.javarpg.controller.RpgController;
 import edu.neumont.light.javarpg.models.enums.TileType;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class RpgView {
@@ -17,16 +17,12 @@ public class RpgView {
 	RpgController controller;
 	
 	private Stage stage;
-	
+
 	@FXML
-	private Canvas Canvas;
-	
+	private GridPane pane;
+
 	@FXML
-	private BorderPane pane;
-	
-	private double playerx;
-	
-	private double playery;
+	private Label tileLabel;
 
 	private List<List<TileType>> board = new ArrayList<List<TileType>>();
 
@@ -36,12 +32,32 @@ public class RpgView {
 	}
 	
 	public void init() {
+		drawTiles();
 		this.stage.setTitle("Tale Of Legend");
-		this.pane.setBackground(Background.EMPTY);
-		this.pane.setStyle("-fx-graphic: url(BaseMap.png)");
 		this.stage.show();
-		GraphicsContext g = Canvas.getGraphicsContext2D();
-		g.strokeRect(this.Canvas.getWidth()/2, this.Canvas.getHeight()/2, 20, 20);
+	}
+
+	private void drawTiles() {
+		
+
+		//TODO the next line is just a test
+		for(int i = 0; i < 10; i++) {
+			List<TileType> temp = new ArrayList<>();
+			for(int j = 0; j < 10; j++) {
+				temp.add(TileType.Grass);
+			}
+			this.board.add(temp);
+		}
+		//TODO end of test
+		
+		for(int i = 0; i < this.board.size(); i++) {
+			for(int j = 0; j < this.board.get(i).size(); i++) {
+				 Image image = new Image(getClass().getResourceAsStream("grassTile.png"));
+				 this.tileLabel.setGraphic(new ImageView(image));
+				 this.pane.add(tileLabel,i,j);
+			}
+		}
+		
 	}
 
 	public void registerController(RpgController rpgController) {
