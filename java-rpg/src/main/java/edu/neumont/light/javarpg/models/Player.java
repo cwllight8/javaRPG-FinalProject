@@ -1,5 +1,6 @@
 package edu.neumont.light.javarpg.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * @author Lemuel Bonite
  *
  */
-public class Player {
+public class Player implements Serializable{
 
 	private String name;
 

@@ -2,17 +2,29 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.canvas.Canvas?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="edu.neumont.light.javarpg.view.RpgView"
-	stylesheets="rpgview.css"
-	>
+	stylesheets="rpgview.css">
 	<!--fx:id="pane" -->
-
+	<top>
+		<MenuBar>
+			<Menu text="Game">
+				<MenuItem text="Restart" onAction="#onRestart" />
+				<MenuItem text="save" onAction="#onSave"/>
+				<MenuItem text="saveExit" onAction="#onSaveExit"/>
+				<MenuItem text="load" onAction="#onLoad" />
+				<MenuItem text="Exit" onAction="#onExit" />
+			</Menu>
+		</MenuBar>
+	</top>
 	<center>
-		<Canvas fx:id="canvas" height="1030" width="1900" />
+		<Canvas fx:id="canvas" height="900" width="1900" />
 	</center>
 </BorderPane>
   
