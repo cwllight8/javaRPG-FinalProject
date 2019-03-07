@@ -26,6 +26,8 @@ public class RpgView {
 	RpgController controller;
 
 	private Stage stage;
+	
+//	private boolean collision;
 
 	@FXML
 	private Canvas canvas;
@@ -136,6 +138,14 @@ public class RpgView {
 
 	}
 
+//	public void collison() {
+//
+//		if(playerx == 5) {
+//			
+//		}
+//		
+//	}
+	
 	private void openSkillsMenu() {
 		// TODO Auto-generated method stub
 		System.out.println("skills");
@@ -216,5 +226,7 @@ public class RpgView {
 	public void onExit(ActionEvent e) {
 		this.stage.close();
 	}
+	
+		
 
 }
