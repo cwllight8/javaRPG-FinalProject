@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Optional;
 
 import edu.neumont.light.javarpg.models.Player;
 import edu.neumont.light.javarpg.view.RpgView;
@@ -44,7 +45,10 @@ public class RpgController {
 			this.player = (Player) in.readObject();
 		}
 	}
-	
-	
+
+	public void createPlayer(Optional<String> name) {
+		this.player = new Player(name.toString());
+
+	}
 
 }

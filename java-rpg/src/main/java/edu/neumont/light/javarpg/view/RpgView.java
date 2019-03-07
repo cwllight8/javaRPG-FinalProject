@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import edu.neumont.light.javarpg.controller.RpgController;
 import javafx.animation.AnimationTimer;
@@ -16,9 +17,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class RpgView {
@@ -26,8 +32,8 @@ public class RpgView {
 	RpgController controller;
 
 	private Stage stage;
-	
-//	private boolean collision;
+
+	// private boolean collision;
 
 	@FXML
 	private Canvas canvas;
@@ -65,11 +71,53 @@ public class RpgView {
 		this.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				drawGame();
+				PlayerStartup();
 				initkeys();
 
 			}
 		});
 
+	}
+
+	private void PlayerStartup() {
+		String msg = "would you like to load an existing charactor?";
+		
+		Alert a = new Alert(AlertType.CONFIRMATION, msg, ButtonType.YES, ButtonType.NO);
+		a.setOnHidden(new EventHandler<DialogEvent>() {
+
+			@Override
+			public void handle(DialogEvent event) {
+				Alert a = (Alert) event.getSource();
+
+				if (a.getResult() == ButtonType.YES) {
+					onLoad(new ActionEvent());
+
+				} else {
+					createPlayer();
+				}
+			}
+
+		});
+		a.show();
+		
+	}
+
+	private void createPlayer() {
+		Optional<String> name;
+		
+		do {			
+			TextInputDialog prompt = new TextInputDialog("newCharacter");
+			prompt.setTitle("player creation prompt");
+			prompt.setHeaderText("what would you like to name this charactor?");
+			prompt.setContentText("name:");
+			
+			name = prompt.showAndWait();
+			if (name.isPresent()) {
+				
+				this.controller.createPlayer(name);
+			} 
+		}while(!name.isPresent());
+		
 	}
 
 	private void drawTitle() {
@@ -138,14 +186,14 @@ public class RpgView {
 
 	}
 
-//	public void collison() {
-//
-//		if(playerx == 5) {
-//			
-//		}
-//		
-//	}
-	
+	// public void collison() {
+	//
+	// if(playerx == 5) {
+	//
+	// }
+	//
+	// }
+
 	private void openSkillsMenu() {
 		// TODO Auto-generated method stub
 		System.out.println("skills");
@@ -226,7 +274,5 @@ public class RpgView {
 	public void onExit(ActionEvent e) {
 		this.stage.close();
 	}
-	
-		
 
 }
