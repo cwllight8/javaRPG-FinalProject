@@ -21,10 +21,7 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class RpgView {
@@ -81,7 +78,7 @@ public class RpgView {
 
 	private void PlayerStartup() {
 		String msg = "would you like to load an existing charactor?";
-		
+
 		Alert a = new Alert(AlertType.CONFIRMATION, msg, ButtonType.YES, ButtonType.NO);
 		a.setOnHidden(new EventHandler<DialogEvent>() {
 
@@ -99,25 +96,25 @@ public class RpgView {
 
 		});
 		a.show();
-		
+
 	}
 
 	private void createPlayer() {
 		Optional<String> name;
-		
-		do {			
+
+		do {
 			TextInputDialog prompt = new TextInputDialog("newCharacter");
 			prompt.setTitle("player creation prompt");
 			prompt.setHeaderText("what would you like to name this charactor?");
 			prompt.setContentText("name:");
-			
+
 			name = prompt.showAndWait();
 			if (name.isPresent()) {
-				
+
 				this.controller.createPlayer(name);
-			} 
-		}while(!name.isPresent());
-		
+			}
+		} while (!name.isPresent());
+
 	}
 
 	private void drawTitle() {
