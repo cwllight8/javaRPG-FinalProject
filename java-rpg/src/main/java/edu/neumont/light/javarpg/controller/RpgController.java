@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.neumont.light.javarpg.models.Player;
 import edu.neumont.light.javarpg.view.RpgView;
@@ -46,5 +44,7 @@ public class RpgController {
 			this.player = (Player) in.readObject();
 		}
 	}
+	
+	
 
 }

@@ -8,7 +8,9 @@ import java.util.List;
  * @author Lemuel Bonite
  *
  */
-public class Player implements Serializable{
+public class Player implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String name;
 
@@ -43,7 +45,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param name the name of the player
+	 * @param name
+	 *            the name of the player
 	 */
 	public Player(String name) {
 		this.name = name;
@@ -55,16 +58,24 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param name           the name of the player
-	 * @param level          the level of the player
-	 * @param xp             how much xp the player will have
-	 * @param xpToNextLevel  how much xp the player will have to next level to level
-	 *                       up
-	 * @param skillPoints    how much skill points the player will have
-	 * @param hp             how much hp the player will have
-	 * @param inventory      this is where the player will store their items
-	 * @param skills         this is what skills the player will have
-	 * @param equippedWeapon this is what weapon the player will be equipped to them
+	 * @param name
+	 *            the name of the player
+	 * @param level
+	 *            the level of the player
+	 * @param xp
+	 *            how much xp the player will have
+	 * @param xpToNextLevel
+	 *            how much xp the player will have to next level to level up
+	 * @param skillPoints
+	 *            how much skill points the player will have
+	 * @param hp
+	 *            how much hp the player will have
+	 * @param inventory
+	 *            this is where the player will store their items
+	 * @param skills
+	 *            this is what skills the player will have
+	 * @param equippedWeapon
+	 *            this is what weapon the player will be equipped to them
 	 */
 	public Player(String name, int level, int xp, int xpToNextLevel, int skillPoints, int hp, ArrayList<Item> inventory,
 			ArrayList<Skill> skills, Weapon equippedWeapon) {
@@ -87,7 +98,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param xpToNextLevel sets how much xp is required to next level
+	 * @param xpToNextLevel
+	 *            sets how much xp is required to next level
 	 */
 	public void setXpToNextLevel(int xpToNextLevel) {
 		this.xpToNextLevel = xpToNextLevel;
@@ -101,7 +113,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param name sets the name of the player
+	 * @param name
+	 *            sets the name of the player
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -115,7 +128,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param level sets the level of the player
+	 * @param level
+	 *            sets the level of the player
 	 */
 	public void setLevel(int level) {
 		this.level = level;
@@ -129,7 +143,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param xp sets the xp for the player
+	 * @param xp
+	 *            sets the xp for the player
 	 */
 	public void setExp(int xp) {
 		this.xp = xp;
@@ -143,7 +158,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param skillPoints sets the skill points for the player
+	 * @param skillPoints
+	 *            sets the skill points for the player
 	 */
 	public void setSkillPoints(int skillPoints) {
 		this.skillPoints = skillPoints;
@@ -157,7 +173,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param hp set the hp to the player
+	 * @param hp
+	 *            set the hp to the player
 	 */
 	public void setHp(int hp) {
 		this.hp = hp;
@@ -171,7 +188,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param inventory set the inventory for the player
+	 * @param inventory
+	 *            set the inventory for the player
 	 */
 	public void setInventory(List<Item> inventory) {
 		this.inventory = inventory;
@@ -185,7 +203,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param skills sets the skills for the player
+	 * @param skills
+	 *            sets the skills for the player
 	 */
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
@@ -199,21 +218,24 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param equippedWeapon sets the weapon equipped for the player
+	 * @param equippedWeapon
+	 *            sets the weapon equipped for the player
 	 */
 	public void setEquippedWeapon(Weapon equippedWeapon) {
 		this.equippedWeapon = equippedWeapon;
 	}
 
 	/**
-	 * @param items adds all items the player gets to the player's inventory
+	 * @param items
+	 *            adds all items the player gets to the player's inventory
 	 */
 	public void addItems(List<Item> items) {
 		this.inventory.addAll(items);
 	}
 
 	/**
-	 * @param index removes an item from the player's inventory
+	 * @param index
+	 *            removes an item from the player's inventory
 	 */
 	public void removeItem(int index) {
 		this.inventory.remove(index);
@@ -231,14 +253,16 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param xp the xp the player will gain
+	 * @param xp
+	 *            the xp the player will gain
 	 */
 	public void xpGain(int xp) {
 		this.xp += xp;
 	}
 
 	/**
-	 * @param hp the hp lost when the player takes damage
+	 * @param hp
+	 *            the hp lost when the player takes damage
 	 */
 	public void takeDamage(int hp) {
 		this.hp -= hp;
@@ -268,7 +292,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param index the index the skill in the array is at
+	 * @param index
+	 *            the index the skill in the array is at
 	 * @return the skill damage
 	 */
 	public int getSkillDamage(int index) {
@@ -277,7 +302,8 @@ public class Player implements Serializable{
 	}
 
 	/**
-	 * @param cost the cost of how much the skill is to purchase
+	 * @param cost
+	 *            the cost of how much the skill is to purchase
 	 */
 	public void purchasedSkill(int cost) {
 		if (skillPoints >= cost) {
@@ -291,7 +317,7 @@ public class Player implements Serializable{
 	public boolean checkLevelUp() {
 		return this.xp >= this.xpToNextLevel;
 	}
-	
+
 	/**
 	 * @return true if the player is dead
 	 */

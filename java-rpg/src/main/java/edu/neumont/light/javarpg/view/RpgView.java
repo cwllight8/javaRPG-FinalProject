@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.neumont.light.javarpg.controller.RpgController;
-import edu.neumont.light.javarpg.models.Player;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,8 +54,27 @@ public class RpgView {
 		this.stage.show();
 		this.playerx = this.canvas.getWidth() / 2;
 		this.playery = this.canvas.getHeight() / 2;
-		this.drawGame();
-		this.initkeys();
+		this.drawTitle();
+		this.setTitleKeys();
+
+	}
+
+	private void setTitleKeys() {
+		this.scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				drawGame();
+				initkeys();
+
+			}
+		});
+
+	}
+
+	private void drawTitle() {
+		GraphicsContext g = canvas.getGraphicsContext2D();
+		g.clearRect(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+		Image screen = new Image("TitleScreen.png");
+		g.drawImage(screen, 0, 0);
 
 	}
 
@@ -65,11 +83,10 @@ public class RpgView {
 			public void handle(KeyEvent e) {
 				String code = e.getCode().toString();
 
-				// && code != "TAB" && code != "M" && code != "I" && code != "K"
 				if (!input.contains(code)) {
 
 					input.add(code);
-					System.out.println(code);
+					// System.out.println(code);
 				}
 
 			}
@@ -183,16 +200,17 @@ public class RpgView {
 			FileChooser chooser = new FileChooser();
 			chooser.setTitle("select a saved game file");
 			file = chooser.showOpenDialog(this.stage);
-			if(file == null) {
+			if (file == null) {
 				return;
 			}
 			try {
 				this.controller.load(file);
 			} catch (IOException | ClassNotFoundException ex) {
 				file = null;
-				new Alert(AlertType.ERROR, "an error occured while trying to select the file. please select another.", ButtonType.OK).show();
+				new Alert(AlertType.ERROR, "an error occured while trying to select the file. please select another.",
+						ButtonType.OK).show();
 			}
-		}while(file == null);
+		} while (file == null);
 	}
 
 	public void onExit(ActionEvent e) {
