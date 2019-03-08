@@ -9,7 +9,7 @@
 <?import javafx.scene.canvas.Canvas?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="edu.neumont.light.javarpg.view.RpgView">
+	fx:controller="edu.neumont.light.javarpg.view.RpgView" fx:id="pane">
 	<!--fx:id="pane" -->
 	<top>
 		<MenuBar>

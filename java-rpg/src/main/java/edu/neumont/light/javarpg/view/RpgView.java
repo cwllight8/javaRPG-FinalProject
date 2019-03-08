@@ -11,16 +11,24 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -30,13 +38,17 @@ public class RpgView {
 
 	private Stage stage;
 
+	private Scene primaryScene;
+
+	private Scene combatScene;
+
 	// private boolean collision;
 
 	@FXML
 	private Canvas canvas;
 
-	// @FXML
-	// private BorderPane pane;
+	@FXML
+	private BorderPane pane;
 
 	private double playerx;
 
@@ -50,6 +62,7 @@ public class RpgView {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+		this.primaryScene = this.stage.getScene();
 
 	}
 
@@ -166,15 +179,19 @@ public class RpgView {
 				if (input.contains("W")) {
 					playery -= 5;
 					drawGame();
+					controller.chanceEncounter();
 				} else if (input.contains("S")) {
 					playery += 5;
 					drawGame();
+					controller.chanceEncounter();
 				} else if (input.contains("A")) {
 					playerx -= 5;
 					drawGame();
+					controller.chanceEncounter();
 				} else if (input.contains("D")) {
 					playerx += 5;
 					drawGame();
+					controller.chanceEncounter();
 				}
 
 			}
@@ -270,6 +287,37 @@ public class RpgView {
 
 	public void onExit(ActionEvent e) {
 		this.stage.close();
+	}
+
+	public void startCombat() {
+
+		Button attack = new Button("Basic Attack");
+		Button skill = new Button("skill");//TODO add for loop to get the damage skills
+		
+		Region spcr1 = new Region();
+//		Region spcr2 = new Region();
+		
+		HBox lowerScreneButtons = new HBox(10,attack, spcr1, skill);
+		
+		Image image = new Image("SlimeMonsterTransparent.png");
+		ImageView imageView = new ImageView(image);
+		
+		HBox upperScreen = new HBox(imageView);
+		
+		lowerScreneButtons.setHgrow(spcr1, Priority.ALWAYS);
+		
+		VBox lowerScreen = new VBox(10, lowerScreneButtons);
+		lowerScreen.setAlignment(Pos.CENTER);
+		
+		VBox screen = new VBox(10, upperScreen, lowerScreen);
+		
+		this.combatScene = new Scene(screen);
+		
+		this.stage.setScene(this.combatScene);
+		this.stage.setWidth(1900);
+		this.stage.setHeight(900);
+		
+
 	}
 
 }

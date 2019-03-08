@@ -6,8 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
+import edu.neumont.light.javarpg.models.Monster;
 import edu.neumont.light.javarpg.models.Player;
 import edu.neumont.light.javarpg.view.RpgView;
 
@@ -18,6 +22,10 @@ public class RpgController {
 	private Player player;
 
 	private final String directory = "saves";
+	
+	private List<Monster> monsters = new ArrayList<>();
+
+	private Random rng = new Random();
 
 	public RpgController(RpgView view) {
 		this.view = view;
@@ -49,6 +57,35 @@ public class RpgController {
 	public void createPlayer(Optional<String> name) {
 		this.player = new Player(name.toString());
 
+	}
+
+	public void chanceEncounter() {
+		
+		int chance = this.rng.nextInt(100);
+		
+		if(chance < 100) {
+			this.generateMonsters();
+		}
+		
+	}
+
+	private void generateMonsters() {
+		int chance = this.rng.nextInt(10);
+		int numOfMonsters;
+		
+		if(chance < 5) {
+			numOfMonsters = 1;
+		}else if(chance < 8) {
+			numOfMonsters = 2;
+		}else {
+			numOfMonsters = 3;
+		}
+		
+		this.monsters.clear();
+		for(int i = 0; i < numOfMonsters; i++) {
+			this.monsters.add(new Monster(this.player.getLevel()));
+		}
+		this.view.startCombat();
 	}
 
 }
