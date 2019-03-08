@@ -41,6 +41,8 @@ public class RpgView {
 	private Scene primaryScene;
 
 	private Scene combatScene;
+	
+	private boolean inCombat = false;
 
 	// private boolean collision;
 
@@ -146,7 +148,7 @@ public class RpgView {
 				if (!input.contains(code)) {
 
 					input.add(code);
-//					System.out.println(code);
+					// System.out.println(code);
 				}
 
 			}
@@ -179,6 +181,8 @@ public class RpgView {
 
 			@Override
 			public void handle(long currentNanoTime) {
+				
+				
 				if (input.contains("W")) {
 					moveUp();
 					drawGame();
@@ -196,6 +200,9 @@ public class RpgView {
 					drawGame();
 					controller.chanceEncounter();
 				}
+				if(inCombat) {
+					this.stop();
+				}
 
 			}
 
@@ -205,34 +212,34 @@ public class RpgView {
 
 	public void moveUp() {
 
-		if(this.playery >= 0) {
+		if (this.playery >= 0) {
 			this.playery -= 5;
 		}
-		
+
 	}
-	
+
 	public void moveDown() {
 
-		if(this.playery <= this.canvas.getHeight() - 20/*player size*/) {
+		if (this.playery <= this.canvas.getHeight() - 20/* player size */) {
 			this.playery += 5;
 		}
-		
+
 	}
-	
+
 	public void moveRight() {
 
-		if(this.playerx <= this.canvas.getWidth() - 20/*player size*/) {
+		if (this.playerx <= this.canvas.getWidth() - 20/* player size */) {
 			this.playerx += 5;
 		}
-		
+
 	}
-	
+
 	public void moveLeft() {
 
-		if(this.playerx >= 0) {
+		if (this.playerx >= 0) {
 			this.playerx -= 5;
 		}
-		
+
 	}
 
 	private void openSkillsMenu() {
@@ -317,19 +324,31 @@ public class RpgView {
 	}
 
 	public void startCombat() {
+		this.inCombat = true;
+		this.input.clear();
 
 		Button attack = new Button("Basic Attack");
 		Button skill = new Button("skill");// TODO add for loop to get the damage skills
+		Button run = new Button("RUN!!");
+		run.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				System.out.println("run");
+				exitCombat();
+			}
+		});
 
 		Region spcr1 = new Region();
-		// Region spcr2 = new Region();
+		Region spcr2 = new Region();
 
-		HBox lowerScreneButtons = new HBox(10, attack, spcr1, skill);
+		HBox lowerScreneButtons = new HBox(10, attack, spcr1, skill, spcr2, run);
 
 		Image image = new Image("SlimeMonsterTransparent.png");
 		ImageView imageView = new ImageView(image);
+		
+		Button monster = new Button("", imageView);
 
-		HBox upperScreen = new HBox(imageView);
+		HBox upperScreen = new HBox(monster);
 
 		lowerScreneButtons.setHgrow(spcr1, Priority.ALWAYS);
 
@@ -344,6 +363,12 @@ public class RpgView {
 		this.stage.setWidth(1900);
 		this.stage.setHeight(900);
 
+	}
+	
+	public void exitCombat() {
+		this.inCombat = false;
+		this.stage.setScene(this.scene);
+		this.initkeys();
 	}
 
 }
