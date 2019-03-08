@@ -41,6 +41,7 @@ public class Player implements Serializable {
 		this.xpToNextLevel = 100;
 		this.skillPoints = 0;
 		this.hp = 100;
+		this.equippedWeapon = new Weapon("S101", "sword", 1);
 
 	}
 
@@ -55,6 +56,8 @@ public class Player implements Serializable {
 		this.xpToNextLevel = 100;
 		this.skillPoints = 0;
 		this.hp = 100;
+		this.equippedWeapon = new Weapon("S101", "sword", 1);
+
 	}
 
 	/**

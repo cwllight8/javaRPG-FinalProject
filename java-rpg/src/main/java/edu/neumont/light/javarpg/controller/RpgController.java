@@ -22,10 +22,12 @@ public class RpgController {
 	private Player player;
 
 	private final String directory = "saves";
-	
+
 	private List<Monster> monsters = new ArrayList<>();
 
 	private Random rng = new Random();
+	
+	private int combatDamge;
 
 	public RpgController(RpgView view) {
 		this.view = view;
@@ -60,33 +62,55 @@ public class RpgController {
 	}
 
 	public void chanceEncounter() {
-		
+
 		int chance = this.rng.nextInt(100);
-		
-		//TODO set back to 2
-		if(chance < 0) {
+
+		// TODO set back to 2
+		if (chance < 100) {
 			this.generateMonsters();
 		}
-		
+
 	}
 
 	private void generateMonsters() {
 		int chance = this.rng.nextInt(10);
 		int numOfMonsters;
-		
-		if(chance < 5) {
+
+		if (chance < 5) {
 			numOfMonsters = 1;
-		}else if(chance < 8) {
+		} else if (chance < 8) {
 			numOfMonsters = 2;
-		}else {
+		} else {
 			numOfMonsters = 3;
 		}
-		
+
 		this.monsters.clear();
-		for(int i = 0; i < numOfMonsters; i++) {
+		for (int i = 0; i < numOfMonsters; i++) {
 			this.monsters.add(new Monster(this.player.getLevel()));
 		}
 		this.view.startCombat();
+	}
+
+	public Player getcharacter() {
+		return this.player;
+	}
+
+	public void setCombatDamage(int damage) {
+		this.combatDamge = damage;
+	}
+
+	public void attackMonster(int i) {
+		//TODO need to change button lable to show current hp
+		this.monsters.get(i).takeDamage(this.combatDamge);
+		if(this.monsters.get(i).checkDeath()) {
+			this.view.monsterDied(i);
+		}
+		
+	}
+
+	public List<Monster> getMonsters() {
+		
+		return this.monsters;
 	}
 
 }

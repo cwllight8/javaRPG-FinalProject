@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.neumont.light.javarpg.controller.RpgController;
+import edu.neumont.light.javarpg.models.enums.MonsterType;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,10 +39,10 @@ public class RpgView {
 
 	private Stage stage;
 
-	private Scene primaryScene;
-
 	private Scene combatScene;
-	
+
+	private Scene scene;
+
 	private boolean inCombat = false;
 
 	// private boolean collision;
@@ -60,11 +61,9 @@ public class RpgView {
 
 	private List<String> input = new ArrayList<>();
 
-	private Scene scene;
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-		this.primaryScene = this.stage.getScene();
 
 	}
 
@@ -181,8 +180,7 @@ public class RpgView {
 
 			@Override
 			public void handle(long currentNanoTime) {
-				
-				
+
 				if (input.contains("W")) {
 					moveUp();
 					drawGame();
@@ -200,7 +198,7 @@ public class RpgView {
 					drawGame();
 					controller.chanceEncounter();
 				}
-				if(inCombat) {
+				if (inCombat) {
 					this.stop();
 				}
 
@@ -327,15 +325,24 @@ public class RpgView {
 		this.inCombat = true;
 		this.input.clear();
 
+		int damage;
+
 		Button attack = new Button("Basic Attack");
 		Button skill = new Button("skill");// TODO add for loop to get the damage skills
 		Button run = new Button("RUN!!");
 		run.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				System.out.println("run");
 				exitCombat();
 			}
+		});
+
+		attack.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				controller.setCombatDamage(controller.getcharacter().getWeaponDamage());
+			}
+
 		});
 
 		Region spcr1 = new Region();
@@ -343,12 +350,28 @@ public class RpgView {
 
 		HBox lowerScreneButtons = new HBox(10, attack, spcr1, skill, spcr2, run);
 
-		Image image = new Image("SlimeMonsterTransparent.png");
-		ImageView imageView = new ImageView(image);
-		
-		Button monster = new Button("", imageView);
+		HBox upperScreen = new HBox();
 
-		HBox upperScreen = new HBox(monster);
+		for(int i = 0 ; i < controller.getMonsters().size(); i++) {	
+			Button[] monsters = new Button[controller.getMonsters().size()];
+			
+			Button temp = new Button(controller.getMonsters().get(i).getHP() + "/", this.getImageView(i));// TODO add for loop to get the different monsters
+			
+			final int monsterNum = i;
+			
+			temp.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO need to add a way to determin the monster(likely has to do with creating
+					// the multiple monster buttons)
+					controller.attackMonster(monsterNum);
+				}
+				
+			});
+		
+			upperScreen.getChildren().add(temp);
+		}
 
 		lowerScreneButtons.setHgrow(spcr1, Priority.ALWAYS);
 
@@ -364,11 +387,32 @@ public class RpgView {
 		this.stage.setHeight(900);
 
 	}
-	
+
+	private ImageView getImageView(int i) {
+		Image image;
+		ImageView imageView = null;
+		if(this.controller.getMonsters().get(i).getType() == MonsterType.SillySlime) {
+			image = new Image("SlimeMonsterTransparent.png");
+			imageView = new ImageView(image);
+		}else if(this.controller.getMonsters().get(i).getType() == MonsterType.BadBird) {
+			image = new Image("BirdMonsterTransparent.png");
+			imageView = new ImageView(image);
+		}else if(this.controller.getMonsters().get(i).getType() == MonsterType.StabbingSkull) {
+			image = new Image("FloatingSkullMonsterTransparent.png");
+			imageView = new ImageView(image);
+		}
+		return imageView;
+	}
+
 	public void exitCombat() {
 		this.inCombat = false;
 		this.stage.setScene(this.scene);
 		this.initkeys();
+	}
+
+	public void monsterDied(int i) {
+		
+
 	}
 
 }
