@@ -90,7 +90,7 @@ public class RpgView {
 	}
 
 	private void PlayerStartup() {
-		String msg = "would you like to load an existing charactor?";
+		String msg = "Would you like to load an existing character?";
 
 		Alert a = new Alert(AlertType.CONFIRMATION, msg, ButtonType.YES, ButtonType.NO);
 		a.setOnHidden(new EventHandler<DialogEvent>() {
