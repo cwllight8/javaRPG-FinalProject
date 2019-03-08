@@ -41,6 +41,8 @@ public class RpgView {
 	private Scene primaryScene;
 
 	private Scene combatScene;
+	
+	private boolean inCombat = false;
 
 	// private boolean collision;
 
@@ -169,6 +171,9 @@ public class RpgView {
 					openSkillsMenu();
 
 				}
+				if (code == "ENTER") {
+					System.out.println("X: " + playerx + " Y: " + playery);
+				}
 			}
 		});
 
@@ -176,22 +181,27 @@ public class RpgView {
 
 			@Override
 			public void handle(long currentNanoTime) {
+				
+				
 				if (input.contains("W")) {
-					playery -= 5;
+					moveUp();
 					drawGame();
 					controller.chanceEncounter();
 				} else if (input.contains("S")) {
-					playery += 5;
+					moveDown();
 					drawGame();
 					controller.chanceEncounter();
 				} else if (input.contains("A")) {
-					playerx -= 5;
+					moveLeft();
 					drawGame();
 					controller.chanceEncounter();
 				} else if (input.contains("D")) {
-					playerx += 5;
+					moveRight();
 					drawGame();
 					controller.chanceEncounter();
+				}
+				if(inCombat) {
+					this.stop();
 				}
 
 			}
@@ -200,13 +210,37 @@ public class RpgView {
 
 	}
 
-	// public void collison() {
-	//
-	// if(playerx == 5) {
-	//
-	// }
-	//
-	// }
+	public void moveUp() {
+
+		if (this.playery >= 0) {
+			this.playery -= 5;
+		}
+
+	}
+
+	public void moveDown() {
+
+		if (this.playery <= this.canvas.getHeight() - 20/* player size */) {
+			this.playery += 5;
+		}
+
+	}
+
+	public void moveRight() {
+
+		if (this.playerx <= this.canvas.getWidth() - 20/* player size */) {
+			this.playerx += 5;
+		}
+
+	}
+
+	public void moveLeft() {
+
+		if (this.playerx >= 0) {
+			this.playerx -= 5;
+		}
+
+	}
 
 	private void openSkillsMenu() {
 		// TODO Auto-generated method stub
@@ -290,34 +324,51 @@ public class RpgView {
 	}
 
 	public void startCombat() {
+		this.inCombat = true;
+		this.input.clear();
 
 		Button attack = new Button("Basic Attack");
-		Button skill = new Button("skill");//TODO add for loop to get the damage skills
-		
+		Button skill = new Button("skill");// TODO add for loop to get the damage skills
+		Button run = new Button("RUN!!");
+		run.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				System.out.println("run");
+				exitCombat();
+			}
+		});
+
 		Region spcr1 = new Region();
-//		Region spcr2 = new Region();
-		
-		HBox lowerScreneButtons = new HBox(10,attack, spcr1, skill);
-		
+		Region spcr2 = new Region();
+
+		HBox lowerScreneButtons = new HBox(10, attack, spcr1, skill, spcr2, run);
+
 		Image image = new Image("SlimeMonsterTransparent.png");
 		ImageView imageView = new ImageView(image);
 		
-		HBox upperScreen = new HBox(imageView);
-		
+		Button monster = new Button("", imageView);
+
+		HBox upperScreen = new HBox(monster);
+
 		lowerScreneButtons.setHgrow(spcr1, Priority.ALWAYS);
-		
+
 		VBox lowerScreen = new VBox(10, lowerScreneButtons);
 		lowerScreen.setAlignment(Pos.CENTER);
-		
+
 		VBox screen = new VBox(10, upperScreen, lowerScreen);
-		
+
 		this.combatScene = new Scene(screen);
-		
+
 		this.stage.setScene(this.combatScene);
 		this.stage.setWidth(1900);
 		this.stage.setHeight(900);
-		
 
+	}
+	
+	public void exitCombat() {
+		this.inCombat = false;
+		this.stage.setScene(this.scene);
+		this.initkeys();
 	}
 
 }
