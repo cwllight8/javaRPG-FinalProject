@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 import edu.neumont.light.javarpg.models.Monster;
@@ -35,6 +34,8 @@ public class RpgController {
 	}
 
 	public void run() {
+		
+		
 		view.init();
 
 	}

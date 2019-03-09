@@ -23,6 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -42,6 +43,12 @@ public class RpgView {
 	RpgController controller;
 
 	private Stage stage;
+
+	private Stage invnetoryStage;
+
+	private Stage mapStage;
+
+	private Stage skillStage;
 
 	private Scene combatScene;
 
@@ -495,7 +502,12 @@ public class RpgView {
 
 			final DamageSkill skillNum = skills.get(i);
 
-			Button skill = new Button(skills.get(i).getName() + " (" + skills.get(i).getDamage() + "DMG)");// TODO add for loop to get the damage skills
+			Button skill = new Button(skills.get(i).getName() + " (" + skills.get(i).getDamage() + "DMG)");// TODO add
+																											// for loop
+																											// to get
+																											// the
+																											// damage
+																											// skills
 
 			skill.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -545,7 +557,7 @@ public class RpgView {
 
 		StackPane upperBackground = new StackPane(backImageView, this.upperScreen);
 
-		VBox lowerScreen = new VBox(10, lowerScreneButtons);
+		VBox lowerScreen = new VBox(10, lowerScreneButtons,new Label(this.controller.getcharacter().getName() + ": " + this.controller.getcharacter().getHp() + "HP"));
 		lowerScreen.setAlignment(Pos.CENTER);
 
 		VBox screen = new VBox(10, upperBackground, lowerScreen);
@@ -587,6 +599,12 @@ public class RpgView {
 
 	public void updateMonsterLabel(int i) {
 		((Labeled) this.upperScreen.getChildren().get(i)).setText(controller.getMonsters().get(i).getHP() + "HP");
+	}
+
+	public void failedToLoadAsset() {
+		Alert a = new Alert(AlertType.ERROR,
+				"the game failed to load an asset, please check the validity of your files", ButtonType.CLOSE);
+
 	}
 
 }

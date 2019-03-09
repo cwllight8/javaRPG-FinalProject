@@ -1,0 +1,8 @@
+Skill s1 = new DamageSkill("lunges at the opponent stabing them with its horns", "horn charge",15, 1);
+		Skill s2 =  new DamageSkill("wraps itself around the opponent", "devour",20, 2);
+		Skill s3 =  new DamageSkill("pecks the opponent", "peck", 25, 3);
+		
+		this.defaultSkills.add(s1);
+		this.defaultSkills.add(s2);
+		this.defaultSkills.add(s3);
+		this.d.add(new DamageSkill("lung at the enemy ", true, "stabing lung", 7, 1));
