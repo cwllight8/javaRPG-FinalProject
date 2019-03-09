@@ -8,13 +8,16 @@ import java.util.Optional;
 
 import edu.neumont.light.javarpg.controller.RpgController;
 import edu.neumont.light.javarpg.models.DamageSkill;
+import edu.neumont.light.javarpg.models.Item;
 import edu.neumont.light.javarpg.models.Skill;
+import edu.neumont.light.javarpg.models.Weapon;
 import edu.neumont.light.javarpg.models.enums.MonsterType;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,6 +33,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -44,11 +48,11 @@ public class RpgView {
 
 	private Stage stage;
 
-	private Stage invnetoryStage;
+	private Stage invnetoryStage = new Stage();
 
-	private Stage mapStage;
+	private Stage mapStage = new Stage();
 
-	private Stage skillStage;
+	private Stage skillStage = new Stage();
 
 	private Scene combatScene;
 
@@ -77,6 +81,8 @@ public class RpgView {
 	private List<String> input = new ArrayList<>();
 
 	private HBox upperScreen = new HBox();
+
+	private Label PlayerTag;
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -402,15 +408,67 @@ public class RpgView {
 	}
 
 	private void openInventory() {
-		// TODO Auto-generated method stub
-		System.out.println("inventory");
+
+		List<Item> inventory = new ArrayList<>();
+		inventory.addAll(this.controller.getcharacter().getInventory());
+
+		VBox iScreen = new VBox();
+
+		for (int i = 0; i < inventory.size(); i++) {
+
+			final Item inventoryItem = inventory.get(i);
+
+			Button item = new Button(inventoryItem.toString());
+			if (inventoryItem instanceof Weapon) {
+				item.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						controller.setEquipedWeapon(inventoryItem);
+
+					}
+
+				});
+			} else {
+				item.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						controller.usePotion(inventoryItem);
+
+					}
+
+				});
+			}
+
+			iScreen.getChildren().add(item);
+		}
+
+		HBox screen = new HBox(10, iScreen, new Label(this.controller.getcharacter().getEquippedWeapon().toString()));
+
+		Scene invnetoryScene = new Scene(screen);
+		this.invnetoryStage.setScene(invnetoryScene);
+		this.invnetoryStage.setTitle("inventory");
+		this.invnetoryStage.setWidth(300);
+		this.invnetoryStage.setHeight(800);
+		this.invnetoryStage.show();
 
 	}
 
 	private void openMap() {
-		// TODO Auto-generated method stub
-		System.out.println("map");
+		Canvas map = new Canvas(211, 100);
 
+		Image mapImage = new Image("BaseMap.png", 211, 100, false, false);
+
+		GraphicsContext g = map.getGraphicsContext2D();
+		g.drawImage(mapImage, 0, 0);
+
+		GridPane gp = new GridPane();
+		gp.getChildren().add(map);
+
+		this.mapStage.setScene(new Scene(gp));
+		this.mapStage.setTitle("MiniMap");
+		this.mapStage.show();
 	}
 
 	private void openMenu() {
@@ -439,7 +497,7 @@ public class RpgView {
 	}
 
 	public void onRestart(ActionEvent e) {
-		// TODO
+		controller.run();
 	}
 
 	public void onSave(ActionEvent e) {
@@ -502,12 +560,7 @@ public class RpgView {
 
 			final DamageSkill skillNum = skills.get(i);
 
-			Button skill = new Button(skills.get(i).getName() + " (" + skills.get(i).getDamage() + "DMG)");// TODO add
-																											// for loop
-																											// to get
-																											// the
-																											// damage
-																											// skills
+			Button skill = new Button(skills.get(i).getName() + " (" + skills.get(i).getDamage() + "DMG)");
 
 			skill.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -557,7 +610,10 @@ public class RpgView {
 
 		StackPane upperBackground = new StackPane(backImageView, this.upperScreen);
 
-		VBox lowerScreen = new VBox(10, lowerScreneButtons,new Label(this.controller.getcharacter().getName() + ": " + this.controller.getcharacter().getHp() + "HP"));
+		this.PlayerTag = new Label(
+				this.controller.getcharacter().getName() + ": " + this.controller.getcharacter().getHp() + "HP");
+
+		VBox lowerScreen = new VBox(10, lowerScreneButtons, this.PlayerTag);
 		lowerScreen.setAlignment(Pos.CENTER);
 
 		VBox screen = new VBox(10, upperBackground, lowerScreen);
@@ -604,7 +660,13 @@ public class RpgView {
 	public void failedToLoadAsset() {
 		Alert a = new Alert(AlertType.ERROR,
 				"the game failed to load an asset, please check the validity of your files", ButtonType.CLOSE);
+		a.show();
 
+	}
+
+	public void updatePlayerLabel() {
+		this.PlayerTag.setText(
+				this.controller.getcharacter().getName() + ": " + this.controller.getcharacter().getHp() + "HP");
 	}
 
 }

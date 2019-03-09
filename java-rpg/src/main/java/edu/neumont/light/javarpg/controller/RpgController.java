@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import edu.neumont.light.javarpg.models.HPPotion;
+import edu.neumont.light.javarpg.models.Item;
 import edu.neumont.light.javarpg.models.Monster;
 import edu.neumont.light.javarpg.models.Player;
+import edu.neumont.light.javarpg.models.Weapon;
 import edu.neumont.light.javarpg.view.RpgView;
 
 public class RpgController {
@@ -34,8 +37,7 @@ public class RpgController {
 	}
 
 	public void run() {
-		
-		
+
 		view.init();
 
 	}
@@ -115,6 +117,22 @@ public class RpgController {
 		if (endCombat) {
 			this.endCombat();
 		}
+
+		this.monstersTurn();
+	}
+
+	private void monstersTurn() {
+		for (int i = 0; i < this.monsters.size(); i++) {
+			if (!this.monsters.get(i).checkDeath()) {
+				if (this.rng.nextInt(10) < 7) {
+					this.player.takeDamage(this.monsters.get(i).getBasicAttack());
+				} else {
+					this.player.takeDamage(this.monsters.get(i).getSkillDamage(0));
+				}
+			}
+			this.view.updatePlayerLabel();
+		}
+
 	}
 
 	public List<Monster> getMonsters() {
@@ -130,6 +148,20 @@ public class RpgController {
 		}
 		this.view.exitCombat();
 
+	}
+
+	public void setEquipedWeapon(Item item) {
+		if (item instanceof Weapon) {
+			this.player.setEquippedWeapon((Weapon) item);
+		}
+
+	}
+
+	public void usePotion(Item item) {
+		if (item instanceof HPPotion) {
+			this.player.usePotion((HPPotion)item);
+		}
+		
 	}
 
 }
