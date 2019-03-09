@@ -56,10 +56,15 @@ public class RpgView {
 	private double playerx;
 
 	private double playery;
-
+	
+	private double playerW = 20;
+	
+	private double playerH = 20;
+	
 	// private List<List<TileType>> board = new ArrayList<List<TileType>>();
 
 	private List<String> input = new ArrayList<>();
+
 
 
 	public void setStage(Stage stage) {
@@ -210,7 +215,35 @@ public class RpgView {
 
 	public void moveUp() {
 
-		if (this.playery >= 0) {
+		boolean canMove = false;
+		
+		boolean upperBound = (this.playery >= 0);
+		boolean tree1 = !((this.playery <= 635 && this.playery >= 560) && (this.playerx <= 1165 && this.playerx >= 1080));
+		boolean tree2 = !((this.playery <= 645 && this.playery >= 570) && (this.playerx <= 1700 && this.playerx >= 1620));
+		boolean tree3 = !((this.playery <= 75 && this.playery >= 20) && (this.playerx <= 190 && this.playerx >= 135));
+		boolean tree4 = !(this.playery <= 75 && this.playery >= 25 && this.playerx <= 310 && this.playerx >= 250);
+		boolean rock1 = !(this.playery <= 375 && this.playery >= 315 && this.playerx <= 1310 && this.playerx >= 1235);
+		boolean rock2 = !(this.playery <= 240 && this.playery >= 175 && this.playerx <= 1495 && this.playerx >= 1425);
+		boolean rock3 = !(this.playery <= 250 && this.playery >= 185 && this.playerx <= 1115 && this.playerx >= 1045);
+		boolean rock4 = !(this.playery <= 270 && this.playery >= 240 && this.playerx <= 225 && this.playerx >= 190);
+		
+		
+		boolean house1 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1295 && this.playerx >= 1200);
+		boolean house2 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1435 && this.playerx >= 1340);
+		boolean house3 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1580 && this.playerx >= 1475);
+		boolean house4 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1855 && this.playerx >= 1750);
+		boolean house5 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 135 && this.playerx >= 70);
+		boolean house6 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 250 && this.playerx >= 190);
+		boolean house7 = !(this.playery <= 125 && this.playery >= 75 && this.playerx <= 370 && this.playerx >= 300);
+		
+		
+				
+		canMove = upperBound 
+				&& tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4
+				&& house1 && house2 && house3 && house4 && house5 && house6 && house7;
+		
+		// 1080 1165
+		if (canMove) {
 			this.playery -= 5;
 		}
 
@@ -218,7 +251,7 @@ public class RpgView {
 
 	public void moveDown() {
 
-		if (this.playery <= this.canvas.getHeight() - 20/* player size */) {
+		if (this.playery <= this.canvas.getHeight() - this.playerH/* player size */) {
 			this.playery += 5;
 		}
 
@@ -226,7 +259,7 @@ public class RpgView {
 
 	public void moveRight() {
 
-		if (this.playerx <= this.canvas.getWidth() - 20/* player size */) {
+		if (this.playerx <= this.canvas.getWidth() - this.playerW/* player size */) {
 			this.playerx += 5;
 		}
 
@@ -352,24 +385,29 @@ public class RpgView {
 
 		HBox upperScreen = new HBox();
 
-		for(int i = 0 ; i < controller.getMonsters().size(); i++) {	
+		for (int i = 0; i < controller.getMonsters().size(); i++) {
 			Button[] monsters = new Button[controller.getMonsters().size()];
-			
-			Button temp = new Button(controller.getMonsters().get(i).getHP() + "/", this.getImageView(i));// TODO add for loop to get the different monsters
-			
+
+			Button temp = new Button(controller.getMonsters().get(i).getHP() + "/", this.getImageView(i));// TODO add
+																											// for loop
+																											// to get
+																											// the
+																											// different
+																											// monsters
+
 			final int monsterNum = i;
-			
+
 			temp.setOnAction(new EventHandler<ActionEvent>() {
-				
+
 				@Override
 				public void handle(ActionEvent arg0) {
 					// TODO need to add a way to determin the monster(likely has to do with creating
 					// the multiple monster buttons)
 					controller.attackMonster(monsterNum);
 				}
-				
+
 			});
-		
+
 			upperScreen.getChildren().add(temp);
 		}
 
@@ -391,13 +429,13 @@ public class RpgView {
 	private ImageView getImageView(int i) {
 		Image image;
 		ImageView imageView = null;
-		if(this.controller.getMonsters().get(i).getType() == MonsterType.SillySlime) {
+		if (this.controller.getMonsters().get(i).getType() == MonsterType.SillySlime) {
 			image = new Image("SlimeMonsterTransparent.png");
 			imageView = new ImageView(image);
-		}else if(this.controller.getMonsters().get(i).getType() == MonsterType.BadBird) {
+		} else if (this.controller.getMonsters().get(i).getType() == MonsterType.BadBird) {
 			image = new Image("BirdMonsterTransparent.png");
 			imageView = new ImageView(image);
-		}else if(this.controller.getMonsters().get(i).getType() == MonsterType.StabbingSkull) {
+		} else if (this.controller.getMonsters().get(i).getType() == MonsterType.StabbingSkull) {
 			image = new Image("FloatingSkullMonsterTransparent.png");
 			imageView = new ImageView(image);
 		}
@@ -411,7 +449,6 @@ public class RpgView {
 	}
 
 	public void monsterDied(int i) {
-		
 
 	}
 
