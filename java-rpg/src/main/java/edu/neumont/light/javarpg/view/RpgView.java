@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.neumont.light.javarpg.controller.RpgController;
+import edu.neumont.light.javarpg.models.DamageSkill;
+import edu.neumont.light.javarpg.models.Skill;
 import edu.neumont.light.javarpg.models.enums.MonsterType;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
@@ -21,6 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +32,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -56,16 +60,16 @@ public class RpgView {
 	private double playerx;
 
 	private double playery;
-	
+
 	private double playerW = 14;
-	
+
 	private double playerH = 19;
-	
+
 	// private List<List<TileType>> board = new ArrayList<List<TileType>>();
 
 	private List<String> input = new ArrayList<>();
 
-
+	private HBox upperScreen = new HBox();
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -130,7 +134,7 @@ public class RpgView {
 			name = prompt.showAndWait();
 			if (name.isPresent()) {
 
-				this.controller.createPlayer(name);
+				this.controller.createPlayer(name.get());
 			}
 		} while (!name.isPresent());
 
@@ -216,10 +220,12 @@ public class RpgView {
 	public void moveUp() {
 
 		boolean canMove = false;
-		
+
 		boolean upperBound = (this.playery >= 0);
-		boolean tree1 = !((this.playery <= 635 && this.playery >= 625) && (this.playerx <= 1165 && this.playerx >= 1080));
-		boolean tree2 = !((this.playery <= 645 && this.playery >= 635) && (this.playerx <= 1700 && this.playerx >= 1620));
+		boolean tree1 = !((this.playery <= 635 && this.playery >= 625)
+				&& (this.playerx <= 1165 && this.playerx >= 1080));
+		boolean tree2 = !((this.playery <= 645 && this.playery >= 635)
+				&& (this.playerx <= 1700 && this.playerx >= 1620));
 		boolean tree3 = !((this.playery <= 75 && this.playery >= 65) && (this.playerx <= 190 && this.playerx >= 135));
 		boolean tree4 = !(this.playery <= 75 && this.playery >= 65 && this.playerx <= 310 && this.playerx >= 250);
 		boolean rock1 = !(this.playery <= 375 && this.playery >= 365 && this.playerx <= 1310 && this.playerx >= 1235);
@@ -228,8 +234,7 @@ public class RpgView {
 		boolean rock4 = !(this.playery <= 270 && this.playery >= 260 && this.playerx <= 225 && this.playerx >= 190);
 		boolean bush = !(this.playery <= 240 && this.playery >= 230 && this.playerx <= 190 && this.playerx >= 130);
 		boolean rock5 = !(this.playery <= 200 && this.playery >= 190 && this.playerx <= 130 && this.playerx >= 120);
-		
-		
+
 		boolean house1 = !(this.playery <= 645 && this.playery >= 635 && this.playerx <= 1295 && this.playerx >= 1200);
 		boolean house2 = !(this.playery <= 645 && this.playery >= 635 && this.playerx <= 1435 && this.playerx >= 1340);
 		boolean house3 = !(this.playery <= 645 && this.playery >= 635 && this.playerx <= 1580 && this.playerx >= 1475);
@@ -237,14 +242,10 @@ public class RpgView {
 		boolean house5 = !(this.playery <= 120 && this.playery >= 110 && this.playerx <= 135 && this.playerx >= 70);
 		boolean house6 = !(this.playery <= 120 && this.playery >= 110 && this.playerx <= 250 && this.playerx >= 190);
 		boolean house7 = !(this.playery <= 125 && this.playery >= 115 && this.playerx <= 370 && this.playerx >= 300);
-		
-		
-				
-		canMove = upperBound 
-				&& tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4
-				&& bush && rock5
+
+		canMove = upperBound && tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4 && bush && rock5
 				&& house1 && house2 && house3 && house4 && house5 && house6 && house7;
-		
+
 		// 1080 1165
 		if (canMove) {
 			this.playery -= 5;
@@ -253,35 +254,47 @@ public class RpgView {
 	}
 
 	public void moveDown() {
-		
+
 		boolean canMove = false;
-		
+
 		boolean lowerBound = (this.playery <= this.canvas.getHeight() - this.playerH/* player size */);
-		boolean tree1 = !((this.playery <= 570 - this.playerH && this.playery >= 560 - this.playerH) && (this.playerx <= 1165 && this.playerx >= 1080));
-		boolean tree2 = !((this.playery <= 580 - this.playerH && this.playery >= 570 - this.playerH) && (this.playerx <= 1700 && this.playerx >= 1620));
-		boolean tree3 = !((this.playery <= 30 - this.playerH && this.playery >= 20 - this.playerH) && (this.playerx <= 190 && this.playerx >= 135));
-		boolean tree4 = !(this.playery <= 35 - this.playerH && this.playery >= 25 - this.playerH && this.playerx <= 310 && this.playerx >= 250);
-		boolean rock1 = !(this.playery <= 325 - this.playerH && this.playery >= 315 - this.playerH && this.playerx <= 1310 && this.playerx >= 1235);
-		boolean rock2 = !(this.playery <= 185 - this.playerH && this.playery >= 175 - this.playerH && this.playerx <= 1495 && this.playerx >= 1425);
-		boolean rock3 = !(this.playery <= 195 - this.playerH && this.playery >= 185 - this.playerH && this.playerx <= 1115 && this.playerx >= 1045);
-		boolean rock4 = !(this.playery <= 250 - this.playerH && this.playery >= 240 - this.playerH && this.playerx <= 225 && this.playerx >= 190);
-		boolean bush = !(this.playery <= 190 - this.playerH && this.playery >= 180 - this.playerH && this.playerx <= 190 && this.playerx >= 130);
-		boolean rock5 = !(this.playery <= 175 - this.playerH && this.playery >= 165 - this.playerH && this.playerx <= 130 && this.playerx >= 120);
-		
-		
-		boolean house1 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH && this.playerx <= 1295 && this.playerx >= 1200);
-		boolean house2 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH && this.playerx <= 1435 && this.playerx >= 1340);
-		boolean house3 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH && this.playerx <= 1580 && this.playerx >= 1475);
-		boolean house4 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH && this.playerx <= 1855 && this.playerx >= 1750);
-		boolean house5 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 135 && this.playerx >= 70);
-		boolean house6 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 250 && this.playerx >= 190);
-		boolean house7 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 370 && this.playerx >= 300);
-		
-		
-				
-		canMove = lowerBound 
-				&& tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4
-				&& bush && rock5
+		boolean tree1 = !((this.playery <= 570 - this.playerH && this.playery >= 560 - this.playerH)
+				&& (this.playerx <= 1165 && this.playerx >= 1080));
+		boolean tree2 = !((this.playery <= 580 - this.playerH && this.playery >= 570 - this.playerH)
+				&& (this.playerx <= 1700 && this.playerx >= 1620));
+		boolean tree3 = !((this.playery <= 30 - this.playerH && this.playery >= 20 - this.playerH)
+				&& (this.playerx <= 190 && this.playerx >= 135));
+		boolean tree4 = !(this.playery <= 35 - this.playerH && this.playery >= 25 - this.playerH && this.playerx <= 310
+				&& this.playerx >= 250);
+		boolean rock1 = !(this.playery <= 325 - this.playerH && this.playery >= 315 - this.playerH
+				&& this.playerx <= 1310 && this.playerx >= 1235);
+		boolean rock2 = !(this.playery <= 185 - this.playerH && this.playery >= 175 - this.playerH
+				&& this.playerx <= 1495 && this.playerx >= 1425);
+		boolean rock3 = !(this.playery <= 195 - this.playerH && this.playery >= 185 - this.playerH
+				&& this.playerx <= 1115 && this.playerx >= 1045);
+		boolean rock4 = !(this.playery <= 250 - this.playerH && this.playery >= 240 - this.playerH
+				&& this.playerx <= 225 && this.playerx >= 190);
+		boolean bush = !(this.playery <= 190 - this.playerH && this.playery >= 180 - this.playerH && this.playerx <= 190
+				&& this.playerx >= 130);
+		boolean rock5 = !(this.playery <= 175 - this.playerH && this.playery >= 165 - this.playerH
+				&& this.playerx <= 130 && this.playerx >= 120);
+
+		boolean house1 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH
+				&& this.playerx <= 1295 && this.playerx >= 1200);
+		boolean house2 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH
+				&& this.playerx <= 1435 && this.playerx >= 1340);
+		boolean house3 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH
+				&& this.playerx <= 1580 && this.playerx >= 1475);
+		boolean house4 = !(this.playery <= 585 - this.playerH && this.playery >= 575 - this.playerH
+				&& this.playerx <= 1855 && this.playerx >= 1750);
+		boolean house5 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 135
+				&& this.playerx >= 70);
+		boolean house6 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 250
+				&& this.playerx >= 190);
+		boolean house7 = !(this.playery <= 85 - this.playerH && this.playery >= 75 - this.playerH && this.playerx <= 370
+				&& this.playerx >= 300);
+
+		canMove = lowerBound && tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4 && bush && rock5
 				&& house1 && house2 && house3 && house4 && house5 && house6 && house7;
 
 		if (canMove) {
@@ -291,35 +304,47 @@ public class RpgView {
 	}
 
 	public void moveRight() {
-		
+
 		boolean canMove = false;
-		
+
 		boolean rightBound = this.playerx <= this.canvas.getWidth() - this.playerW/* player size */;
-		boolean tree1 = !((this.playery <= 635 && this.playery >= 560) && (this.playerx <= 1090 && this.playerx >= 1080 - this.playerW));
-		boolean tree2 = !((this.playery <= 645 && this.playery >= 570) && (this.playerx <= 1630 && this.playerx >= 1620 - this.playerW));
-		boolean tree3 = !((this.playery <= 75 && this.playery >= 20) && (this.playerx <= 145 && this.playerx >= 135 - this.playerW));
-		boolean tree4 = !(this.playery <= 75 && this.playery >= 25 && this.playerx <= 260 && this.playerx >= 250 - this.playerW);
-		boolean rock1 = !(this.playery <= 375 && this.playery >= 315 && this.playerx <= 1245 && this.playerx >= 1235 - this.playerW);
-		boolean rock2 = !(this.playery <= 240 && this.playery >= 175 && this.playerx <= 1435 && this.playerx >= 1425 - this.playerW);
-		boolean rock3 = !(this.playery <= 250 && this.playery >= 185 && this.playerx <= 1055 && this.playerx >= 1045 - this.playerW);
-		boolean rock4 = !(this.playery <= 270 && this.playery >= 240 && this.playerx <= 200 && this.playerx >= 190 - this.playerW);
-		boolean bush = !(this.playery <= 240 && this.playery >= 180 && this.playerx <= 140 && this.playerx >= 130 - this.playerW);
-		boolean rock5 = !(this.playery <= 200 && this.playery >= 165 && this.playerx <= 130 && this.playerx >= 120 - this.playerW);
-		
-		
-		boolean house1 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1210 && this.playerx >= 1200 - this.playerW);
-		boolean house2 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1350 && this.playerx >= 1340 - this.playerW);
-		boolean house3 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1485 && this.playerx >= 1475 - this.playerW);
-		boolean house4 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1760 && this.playerx >= 1750 - this.playerW);
-		boolean house5 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 80 && this.playerx >= 70 - this.playerW);
-		boolean house6 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 200 && this.playerx >= 190 - this.playerW);
-		boolean house7 = !(this.playery <= 125 && this.playery >= 75 && this.playerx <= 310 && this.playerx >= 300 - this.playerW);
-		
-		
-				
-		canMove = rightBound 
-				&& tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4
-				&& bush && rock5
+		boolean tree1 = !((this.playery <= 635 && this.playery >= 560)
+				&& (this.playerx <= 1090 && this.playerx >= 1080 - this.playerW));
+		boolean tree2 = !((this.playery <= 645 && this.playery >= 570)
+				&& (this.playerx <= 1630 && this.playerx >= 1620 - this.playerW));
+		boolean tree3 = !((this.playery <= 75 && this.playery >= 20)
+				&& (this.playerx <= 145 && this.playerx >= 135 - this.playerW));
+		boolean tree4 = !(this.playery <= 75 && this.playery >= 25 && this.playerx <= 260
+				&& this.playerx >= 250 - this.playerW);
+		boolean rock1 = !(this.playery <= 375 && this.playery >= 315 && this.playerx <= 1245
+				&& this.playerx >= 1235 - this.playerW);
+		boolean rock2 = !(this.playery <= 240 && this.playery >= 175 && this.playerx <= 1435
+				&& this.playerx >= 1425 - this.playerW);
+		boolean rock3 = !(this.playery <= 250 && this.playery >= 185 && this.playerx <= 1055
+				&& this.playerx >= 1045 - this.playerW);
+		boolean rock4 = !(this.playery <= 270 && this.playery >= 240 && this.playerx <= 200
+				&& this.playerx >= 190 - this.playerW);
+		boolean bush = !(this.playery <= 240 && this.playery >= 180 && this.playerx <= 140
+				&& this.playerx >= 130 - this.playerW);
+		boolean rock5 = !(this.playery <= 200 && this.playery >= 165 && this.playerx <= 130
+				&& this.playerx >= 120 - this.playerW);
+
+		boolean house1 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1210
+				&& this.playerx >= 1200 - this.playerW);
+		boolean house2 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1350
+				&& this.playerx >= 1340 - this.playerW);
+		boolean house3 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1485
+				&& this.playerx >= 1475 - this.playerW);
+		boolean house4 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1760
+				&& this.playerx >= 1750 - this.playerW);
+		boolean house5 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 80
+				&& this.playerx >= 70 - this.playerW);
+		boolean house6 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 200
+				&& this.playerx >= 190 - this.playerW);
+		boolean house7 = !(this.playery <= 125 && this.playery >= 75 && this.playerx <= 310
+				&& this.playerx >= 300 - this.playerW);
+
+		canMove = rightBound && tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4 && bush && rock5
 				&& house1 && house2 && house3 && house4 && house5 && house6 && house7;
 
 		if (canMove) {
@@ -329,12 +354,14 @@ public class RpgView {
 	}
 
 	public void moveLeft() {
-		
+
 		boolean canMove = false;
-		
+
 		boolean leftBound = this.playerx >= 0;
-		boolean tree1 = !((this.playery <= 635 && this.playery >= 560) && (this.playerx <= 1165 && this.playerx >= 1155));
-		boolean tree2 = !((this.playery <= 645 && this.playery >= 570) && (this.playerx <= 1700 && this.playerx >= 1690));
+		boolean tree1 = !((this.playery <= 635 && this.playery >= 560)
+				&& (this.playerx <= 1165 && this.playerx >= 1155));
+		boolean tree2 = !((this.playery <= 645 && this.playery >= 570)
+				&& (this.playerx <= 1700 && this.playerx >= 1690));
 		boolean tree3 = !((this.playery <= 75 && this.playery >= 20) && (this.playerx <= 190 && this.playerx >= 180));
 		boolean tree4 = !(this.playery <= 75 && this.playery >= 25 && this.playerx <= 310 && this.playerx >= 300);
 		boolean rock1 = !(this.playery <= 375 && this.playery >= 315 && this.playerx <= 1310 && this.playerx >= 1300);
@@ -343,8 +370,7 @@ public class RpgView {
 		boolean rock4 = !(this.playery <= 270 && this.playery >= 240 && this.playerx <= 225 && this.playerx >= 215);
 		boolean bush = !(this.playery <= 240 && this.playery >= 180 && this.playerx <= 190 && this.playerx >= 180);
 		boolean rock5 = !(this.playery <= 200 && this.playery >= 165 && this.playerx <= 130 && this.playerx >= 120);
-		
-		
+
 		boolean house1 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1295 && this.playerx >= 1285);
 		boolean house2 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1435 && this.playerx >= 1425);
 		boolean house3 = !(this.playery <= 645 && this.playery >= 575 && this.playerx <= 1580 && this.playerx >= 1570);
@@ -352,12 +378,8 @@ public class RpgView {
 		boolean house5 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 135 && this.playerx >= 125);
 		boolean house6 = !(this.playery <= 120 && this.playery >= 75 && this.playerx <= 250 && this.playerx >= 240);
 		boolean house7 = !(this.playery <= 125 && this.playery >= 75 && this.playerx <= 370 && this.playerx >= 360);
-		
-		
-				
-		canMove = leftBound 
-				&& tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4
-				&& bush && rock5
+
+		canMove = leftBound && tree1 && tree2 && tree3 && tree4 && rock1 && rock2 && rock3 && rock4 && bush && rock5
 				&& house1 && house2 && house3 && house4 && house5 && house6 && house7;
 
 		if (canMove) {
@@ -396,7 +418,7 @@ public class RpgView {
 		g.drawImage(map, 0, 0);
 		Image player = new Image("Player.png");
 		g.drawImage(player, this.playerx, this.playery);
-//		g.strokeRect(this.playerx, this.playery, 20, 20);
+		// g.strokeRect(this.playerx, this.playery, 20, 20);
 
 	}
 
@@ -427,7 +449,7 @@ public class RpgView {
 	}
 
 	public void onLoad(ActionEvent e) {
-		File file;
+		File file = null;
 		do {
 			FileChooser chooser = new FileChooser();
 			chooser.setTitle("select a saved game file");
@@ -453,17 +475,9 @@ public class RpgView {
 		this.inCombat = true;
 		this.input.clear();
 
-		int damage;
+		HBox lowerScreneButtons = new HBox(10);
 
-		Button attack = new Button("Basic Attack");
-		Button skill = new Button("skill");// TODO add for loop to get the damage skills
-		Button run = new Button("RUN!!");
-		run.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				exitCombat();
-			}
-		});
+		Button attack = new Button("Basic Attack" + " (" + controller.getcharacter().getWeaponDamage() + "DMG)");
 
 		attack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -473,22 +487,43 @@ public class RpgView {
 
 		});
 
-		Region spcr1 = new Region();
-		Region spcr2 = new Region();
+		lowerScreneButtons.getChildren().add(attack);
 
-		HBox lowerScreneButtons = new HBox(10, attack, spcr1, skill, spcr2, run);
+		List<DamageSkill> skills = this.controller.getcharacter().getDamageSkill();
 
-		HBox upperScreen = new HBox();
+		for (int i = 0; i < skills.size(); i++) {
+
+			final DamageSkill skillNum = skills.get(i);
+
+			Button skill = new Button(skills.get(i).getName() + " (" + skills.get(i).getDamage() + "DMG)");// TODO add for loop to get the damage skills
+
+			skill.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent arg0) {
+					controller.setCombatDamage(skillNum.getDamage());
+				}
+
+			});
+			lowerScreneButtons.getChildren().add(skill);
+		}
+		Button run = new Button("RUN!!");
+		run.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				exitCombat();
+			}
+		});
+
+		lowerScreneButtons.getChildren().add(run);
+		// Region spcr1 = new Region();
+		// Region spcr2 = new Region();
+
+		this.upperScreen = new HBox();
 
 		for (int i = 0; i < controller.getMonsters().size(); i++) {
-			Button[] monsters = new Button[controller.getMonsters().size()];
 
-			Button temp = new Button(controller.getMonsters().get(i).getHP() + "/", this.getImageView(i));// TODO add
-																											// for loop
-																											// to get
-																											// the
-																											// different
-																											// monsters
+			Button temp = new Button(controller.getMonsters().get(i).getHP() + "HP", this.getImageView(i));
 
 			final int monsterNum = i;
 
@@ -496,9 +531,8 @@ public class RpgView {
 
 				@Override
 				public void handle(ActionEvent arg0) {
-					// TODO need to add a way to determin the monster(likely has to do with creating
-					// the multiple monster buttons)
 					controller.attackMonster(monsterNum);
+
 				}
 
 			});
@@ -506,12 +540,15 @@ public class RpgView {
 			upperScreen.getChildren().add(temp);
 		}
 
-		lowerScreneButtons.setHgrow(spcr1, Priority.ALWAYS);
+		Image backGround = new Image("BattleBackground.png");
+		ImageView backImageView = new ImageView(backGround);
+
+		StackPane upperBackground = new StackPane(backImageView, this.upperScreen);
 
 		VBox lowerScreen = new VBox(10, lowerScreneButtons);
 		lowerScreen.setAlignment(Pos.CENTER);
 
-		VBox screen = new VBox(10, upperScreen, lowerScreen);
+		VBox screen = new VBox(10, upperBackground, lowerScreen);
 
 		this.combatScene = new Scene(screen);
 
@@ -544,7 +581,12 @@ public class RpgView {
 	}
 
 	public void monsterDied(int i) {
+		this.upperScreen.getChildren().get(i).setVisible(false);
 
+	}
+
+	public void updateMonsterLabel(int i) {
+		((Labeled) this.upperScreen.getChildren().get(i)).setText(controller.getMonsters().get(i).getHP() + "HP");
 	}
 
 }

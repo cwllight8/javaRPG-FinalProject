@@ -26,7 +26,7 @@ public class RpgController {
 	private List<Monster> monsters = new ArrayList<>();
 
 	private Random rng = new Random();
-	
+
 	private int combatDamge;
 
 	public RpgController(RpgView view) {
@@ -51,13 +51,15 @@ public class RpgController {
 	}
 
 	public void load(File file) throws ClassNotFoundException, IOException {
+
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
 			this.player = (Player) in.readObject();
 		}
+
 	}
 
-	public void createPlayer(Optional<String> name) {
-		this.player = new Player(name.toString());
+	public void createPlayer(String name) {
+		this.player = new Player(name);
 
 	}
 
@@ -66,7 +68,7 @@ public class RpgController {
 		int chance = this.rng.nextInt(100);
 
 		// TODO set back to 2
-		if (chance < 0) {
+		if (chance < 100) {
 			this.generateMonsters();
 		}
 
@@ -100,17 +102,33 @@ public class RpgController {
 	}
 
 	public void attackMonster(int i) {
-		//TODO need to change button lable to show current hp
 		this.monsters.get(i).takeDamage(this.combatDamge);
-		if(this.monsters.get(i).checkDeath()) {
+		this.view.updateMonsterLabel(i);
+		if (this.monsters.get(i).checkDeath()) {
 			this.view.monsterDied(i);
 		}
-		
+		boolean endCombat = true;
+		for (int j = 0; j < this.monsters.size() && endCombat; j++) {
+			endCombat = this.monsters.get(j).checkDeath();
+		}
+		if (endCombat) {
+			this.endCombat();
+		}
 	}
 
 	public List<Monster> getMonsters() {
-		
+
 		return this.monsters;
+	}
+
+	public void endCombat() {
+
+		for (int i = 0; i < this.monsters.size(); i++) {
+			this.player.addItems(this.monsters.get(i).generateLoot(this.player.getLevel()));
+			this.player.xpGain(this.monsters.get(i).expGain());
+		}
+		this.view.exitCombat();
+
 	}
 
 }

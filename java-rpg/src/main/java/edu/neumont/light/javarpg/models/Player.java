@@ -42,6 +42,7 @@ public class Player implements Serializable {
 		this.skillPoints = 0;
 		this.hp = 100;
 		this.equippedWeapon = new Weapon("S101", "sword", 1);
+		this.skills.add(new DamageSkill("lung at the enemy ", true, "stabing lung", 7, 1));
 
 	}
 
@@ -57,6 +58,8 @@ public class Player implements Serializable {
 		this.skillPoints = 0;
 		this.hp = 100;
 		this.equippedWeapon = new Weapon("S101", "sword", 1);
+		this.skills.add(new DamageSkill("lung at the enemy ", true, "stabing lung", 7, 1));
+
 
 	}
 

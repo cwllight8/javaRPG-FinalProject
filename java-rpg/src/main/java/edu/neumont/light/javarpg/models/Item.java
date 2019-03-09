@@ -1,11 +1,14 @@
 package edu.neumont.light.javarpg.models;
 
+import java.io.Serializable;
 
 /**
  * @author cole
  *
  */
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String itemID;
 
@@ -18,11 +21,13 @@ public class Item {
 	 */
 	public Item() {
 	}
-	
+
 	/**
-	 * @param itemID  the item's id formated as a letter referring to the type, and then
+	 * @param itemID
+	 *            the item's id formated as a letter referring to the type, and then
 	 *            3 numbers
-	 * @param type what type of item is it, for example a sword, mace, potion, knife,
+	 * @param type
+	 *            what type of item is it, for example a sword, mace, potion, knife,
 	 *            etc.
 	 */
 	public Item(String itemID, String type) {
@@ -92,10 +97,8 @@ public class Item {
 	}
 
 	/**
-	 * @return a string representation of the fields formated as:
-	 * 		itemID: (itemID)
-	 * 		price: (price)G
-	 * 		type: (type)
+	 * @return a string representation of the fields formated as: itemID: (itemID)
+	 *         price: (price)G type: (type)
 	 */
 	@Override
 	public String toString() {

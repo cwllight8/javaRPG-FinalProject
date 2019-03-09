@@ -1,17 +1,21 @@
 package edu.neumont.light.javarpg.models;
 
+import java.io.Serializable;
+
 /**
  * @author cole
  *
  */
-public class Skill {
+public class Skill implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String description;
 
 	private boolean unlocked;
 
 	private String name;
-	
+
 	private int cost;
 
 	/**
@@ -27,7 +31,8 @@ public class Skill {
 	 *            the name of the skill
 	 * 
 	 *            will set unlocked to false
-	 * @param cost how many skill points the skill costs
+	 * @param cost
+	 *            how many skill points the skill costs
 	 */
 	public Skill(String description, String name, int cost) {
 		this.description = description;
@@ -44,7 +49,8 @@ public class Skill {
 	 *            unlocked or not
 	 * @param name
 	 *            the name of the skill
-	 *             @param cost how many skill points the skill costs
+	 * @param cost
+	 *            how many skill points the skill costs
 	 */
 	public Skill(String description, boolean unlocked, String name, int cost) {
 		this.description = description;
@@ -106,7 +112,8 @@ public class Skill {
 	}
 
 	/**
-	 * @param cost set the number of skillpoints this skill costs to unlock
+	 * @param cost
+	 *            set the number of skillpoints this skill costs to unlock
 	 */
 	public void setCost(int cost) {
 		this.cost = cost;
@@ -116,15 +123,16 @@ public class Skill {
 	 * @return will return false if the skill has already been unlocked and true if
 	 *         it has not. in the case that the skill is not already unlocked it
 	 *         will also set it to be unlocked.
-	 *         
-	 * @param pSP the players total skill points 
+	 * 
+	 * @param pSP
+	 *            the players total skill points
 	 */
 	public boolean unlockStill(int pSP) {
 		if (this.isUnlocked()) {
 			return false;
 		}
-		if(pSP >= this.cost) {
-			
+		if (pSP >= this.cost) {
+
 			this.unlocked = true;
 			return true;
 		}
@@ -132,10 +140,7 @@ public class Skill {
 	}
 
 	/**
-	 * @return a string formated as:
-	 * 			name:
-	 * 			cost: (cost) SP
-	 * 			description
+	 * @return a string formated as: name: cost: (cost) SP description
 	 */
 	@Override
 	public String toString() {
