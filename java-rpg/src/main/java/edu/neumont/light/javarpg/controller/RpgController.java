@@ -71,7 +71,7 @@ public class RpgController {
 		int chance = this.rng.nextInt(100);
 
 		// TODO set back to 2
-		if (chance < 100) {
+		if (chance < 2) {
 			this.generateMonsters();
 		}
 
